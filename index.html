@@ -44,10 +44,11 @@
         flex: 0 0 50%;
       }
 
-      /* Left panel fills vertical space for 3D viewport */
+      /* Left panel: column flex with viewport + thumbnails */
       .left-panel {
         height: 100%;
-        position: relative;
+        display: flex;
+        flex-direction: column;
       }
 
       /* Right panel scrolls independently of viewport */
@@ -56,7 +57,15 @@
         padding: 20px;
       }
 
-      /* Embed container fills left panel completely */
+      /* Viewport area takes remaining space above thumbnails */
+      .viewport-container {
+        flex: 1;
+        position: relative;
+        min-height: 0;
+        overflow: hidden;
+      }
+
+      /* Embed container fills viewport area */
       #embed3DSource {
         width: 100%;
         height: 100%;
@@ -67,12 +76,13 @@
          Pre-render Gallery
          ============================================ */
 
-      .prerender-gallery {
+      .prerender-overlay {
         position: absolute;
         inset: 0;
         z-index: 5;
         display: flex;
-        flex-direction: column;
+        align-items: center;
+        justify-content: center;
         background-color: #f5f5f5;
       }
 
@@ -82,16 +92,6 @@
       }
       .fade-leave-to {
         opacity: 0;
-      }
-
-      .main-image-container {
-        flex: 1;
-        position: relative;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        overflow: hidden;
-        min-height: 0;
       }
 
       .main-image {
@@ -712,15 +712,17 @@
            ========================================== -->
       <div class="left-panel">
 
-        <!-- 3D viewport (loads underneath the gallery during transition) -->
-        <div id="embed3DSource" v-if="mode === 'realtime'">
-          <!-- Metabox iframe will be injected here -->
-        </div>
+        <!-- Viewport area (pre-render image or 3D stream) -->
+        <div class="viewport-container">
 
-        <!-- Pre-render gallery (overlays 3D during transition, then fades out) -->
-        <Transition name="fade">
-          <div class="prerender-gallery" v-if="mode === 'prerender' || transitioning">
-            <div class="main-image-container">
+          <!-- 3D embed (loads underneath during transition) -->
+          <div id="embed3DSource" v-if="mode === 'realtime'">
+            <!-- Metabox iframe will be injected here -->
+          </div>
+
+          <!-- Pre-render image overlay (fades out when 3D is ready) -->
+          <Transition name="fade">
+            <div class="prerender-overlay" v-if="mode === 'prerender' || transitioning">
               <img
                 :src="mainImageUrl"
                 :alt="activeAngle + ' view'"
@@ -737,22 +739,23 @@
                 {{ transitioning ? 'Loading 3D...' : 'View in Real-Time 3D' }}
               </button>
             </div>
+          </Transition>
+        </div>
 
-            <div class="thumbnail-strip">
-              <img
-                v-for="thumb in thumbnails"
-                :key="thumb.key"
-                :src="thumb.url"
-                :alt="thumb.label"
-                :title="thumb.label"
-                class="thumbnail"
-                :class="{ active: activeAngle === thumb.key }"
-                @click="selectAngle(thumb.key)"
-                @error="onImageError"
-              />
-            </div>
-          </div>
-        </Transition>
+        <!-- Thumbnail strip (always visible) -->
+        <div class="thumbnail-strip">
+          <img
+            v-for="thumb in thumbnails"
+            :key="thumb.key"
+            :src="thumb.url"
+            :alt="thumb.label"
+            :title="thumb.label"
+            class="thumbnail"
+            :class="{ active: activeAngle === thumb.key }"
+            @click="selectAngle(thumb.key)"
+            @error="onImageError"
+          />
+        </div>
       </div>
 
       <!-- ==========================================
