@@ -1,0 +1,932 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jagger Hybrid Configurator</title>
+    <meta
+      name="description"
+      content="Hybrid configurator: instant pre-rendered images with on-demand real-time 3D upgrade."
+    />
+
+    <style>
+      /* Critical Layout CSS - DO NOT REMOVE */
+
+      /* Box-sizing reset for predictable dimensions */
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      /* Body reset - prevents scrollbars and margins */
+      body {
+        margin: 0;
+        overflow: hidden;
+        height: 100vh;
+        font-family: Arial, sans-serif;
+        background-color: #f9fafb;
+      }
+
+      /* Container with absolute positioning prevents layout shifts */
+      .container {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        overflow: hidden;
+        background-color: white;
+      }
+
+      /* Fixed 50/50 split - no grow/shrink prevents viewport jitter */
+      .left-panel,
+      .right-panel {
+        flex: 0 0 50%;
+      }
+
+      /* Left panel fills vertical space for 3D viewport */
+      .left-panel {
+        height: 100%;
+        position: relative;
+      }
+
+      /* Right panel scrolls independently of viewport */
+      .right-panel {
+        overflow: auto;
+        padding: 20px;
+      }
+
+      /* Embed container fills left panel completely */
+      #embed3DSource {
+        width: 100%;
+        height: 100%;
+        background-color: #e0e0e0;
+      }
+
+      /* ============================================
+         Pre-render Gallery
+         ============================================ */
+
+      .prerender-gallery {
+        position: absolute;
+        inset: 0;
+        z-index: 5;
+        display: flex;
+        flex-direction: column;
+        background-color: #f5f5f5;
+      }
+
+      /* Fade-out transition when switching to 3D */
+      .fade-leave-active {
+        transition: opacity 0.5s ease;
+      }
+      .fade-leave-to {
+        opacity: 0;
+      }
+
+      .main-image-container {
+        flex: 1;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        min-height: 0;
+      }
+
+      .main-image {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+        transition: opacity 0.2s ease;
+      }
+
+      .main-image.loading {
+        opacity: 0.5;
+      }
+
+      .view-3d-button {
+        position: absolute;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        padding: 12px 28px;
+        background-color: #000;
+        color: #fff;
+        border: none;
+        border-radius: 24px;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        white-space: nowrap;
+        z-index: 2;
+        transition: background-color 0.15s ease;
+      }
+
+      .view-3d-button:hover {
+        background-color: #222;
+      }
+
+      .thumbnail-strip {
+        flex: 0 0 100px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        padding: 10px;
+        background-color: #fff;
+        border-top: 1px solid #e0e0e0;
+      }
+
+      .thumbnail {
+        width: 80px;
+        height: 80px;
+        object-fit: cover;
+        border-radius: 8px;
+        border: 2px solid transparent;
+        cursor: pointer;
+        transition: border-color 0.15s ease;
+      }
+
+      .thumbnail:hover {
+        border-color: #999;
+      }
+
+      .thumbnail.active {
+        border-color: #000;
+      }
+
+      /* Spinner for the 3D loading indicator on the view-3d-button */
+      .view-3d-button .spinner {
+        display: inline-block;
+        width: 14px;
+        height: 14px;
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        border-top-color: #fff;
+        border-radius: 50%;
+        animation: spin 0.8s linear infinite;
+        margin-right: 8px;
+        vertical-align: middle;
+      }
+
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      /* ============================================
+         UI Styling (shared across modes)
+         ============================================ */
+
+      .header {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
+      .header h3 {
+        margin: 0;
+        font-size: 24px;
+        color: #333;
+      }
+
+      .product-selector {
+        margin-bottom: 20px;
+      }
+
+      .product-selector label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 8px;
+        color: #333;
+      }
+
+      select {
+        width: 100%;
+        padding: 10px 40px 10px 15px;
+        border: 1px solid #ccc;
+        background-color: white;
+        cursor: pointer;
+        border-radius: 10px;
+        appearance: none;
+        background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23333' d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 10px center;
+        background-size: 12px;
+      }
+
+      .product-details {
+        margin-top: 20px;
+      }
+
+      .options-section {
+        margin-bottom: 20px;
+      }
+
+      .option-label {
+        font-weight: bold;
+        margin-bottom: 10px;
+        color: #333;
+      }
+
+      .options {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      button {
+        padding: 10px 15px;
+        border: 1px solid #ccc;
+        background-color: white;
+        cursor: pointer;
+        border-radius: 10px;
+        transition: background-color 0.15s ease, border-color 0.15s ease;
+      }
+
+      button:hover {
+        background-color: #f5f5f5;
+      }
+
+      button:focus-visible {
+        outline: 2px solid #4c9ffe;
+        outline-offset: 2px;
+      }
+
+      .options button.active {
+        border-color: black;
+        background-color: #000;
+        color: white;
+      }
+
+      .add-to-cart {
+        margin-bottom: 20px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .add-to-cart button {
+        border: 1px solid #000;
+        background-color: #000;
+        color: #fff;
+      }
+
+      .add-to-cart button:hover {
+        background-color: #111;
+      }
+
+      /* ============================================
+         Secondary CTA (pre-render → 3D in right panel)
+         ============================================ */
+
+      .upgrade-section {
+        margin-top: 30px;
+        padding-top: 20px;
+        border-top: 1px solid #e0e0e0;
+        text-align: center;
+      }
+
+      .upgrade-button {
+        display: inline-block;
+        padding: 12px 24px;
+        background-color: #fff;
+        color: #000;
+        border: 2px solid #000;
+        border-radius: 24px;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background-color 0.15s ease, color 0.15s ease;
+      }
+
+      .upgrade-button:hover {
+        background-color: #000;
+        color: #fff;
+      }
+
+      .upgrade-hint {
+        margin-top: 8px;
+        font-size: 12px;
+        color: #999;
+      }
+    </style>
+
+    <!-- Vue 3 import map -->
+    <script type="importmap">
+      {
+        "imports": {
+          "vue": "https://unpkg.com/vue@3/dist/vue.esm-browser.js"
+        }
+      }
+    </script>
+
+    <script type="module">
+      // =============================================
+      // HYBRID CONFIG — Edit this to match your setup
+      // =============================================
+      const HYBRID_CONFIG = {
+        configuratorId: '54c0a58e-df14-4d5c-9a49-0989bc6aa80b',
+        prerender: {
+          imageBasePath: './images/',
+          fallbackImage: './images/placeholder.png',
+          imageExtension: '.webp',
+
+          // Camera angles → thumbnail strip (first = default)
+          angles: [
+            { key: 'angle', label: 'Angle View' },
+            { key: 'front', label: 'Front View' },
+            { key: 'side', label: 'Side View' },
+          ],
+
+          // Products available in pre-render mode (first = default)
+          products: [
+            { key: 'jagger-dining-side-chair', label: 'Jagger Dining Side Chair' },
+            { key: 'jagger-dining-arm-chair', label: 'Jagger Dining Arm Chair' },
+            { key: 'arhaus-jagger-chair', label: 'Arhaus Jagger Chair' },
+            { key: 'arhaus-jagger-dining-bench', label: 'Arhaus Jagger Dining Bench' },
+            { key: 'jagger-barstool', label: 'Jagger Barstool' },
+          ],
+
+          // Curated material slots (order = filename segment order)
+          // Replace UUIDs with actual Metabox slot/material IDs
+          slots: [
+            {
+              key: 'upholstery',
+              label: 'Upholstery',
+              metaboxSlotId: 'REPLACE-WITH-UUID',
+              materials: [
+                { key: 'arh-leather-carbon', label: 'Carbon Leather', metaboxMaterialId: 'REPLACE-UUID' },
+                { key: 'arh-leather-buckeye', label: 'Buckeye Leather', metaboxMaterialId: 'REPLACE-UUID' },
+                { key: 'arh-cloth-cary-linen', label: 'Cary Linen', metaboxMaterialId: 'REPLACE-UUID' },
+                { key: 'arh-cloth-downy-ebony', label: 'Downy Ebony', metaboxMaterialId: 'REPLACE-UUID' },
+              ],
+            },
+            {
+              key: 'legs',
+              label: 'Legs',
+              metaboxSlotId: 'REPLACE-WITH-UUID',
+              materials: [
+                { key: 'brass-jagger', label: 'Brass', metaboxMaterialId: 'REPLACE-UUID' },
+              ],
+            },
+            {
+              key: 'wood',
+              label: 'Wood',
+              metaboxSlotId: 'REPLACE-WITH-UUID',
+              materials: [
+                { key: 'ebony-kensington-jagger', label: 'Ebony Kensington', metaboxMaterialId: 'REPLACE-UUID' },
+              ],
+            },
+          ],
+        },
+      };
+
+      // =============================================
+      // Imports
+      // =============================================
+      import {
+        integrateMetabox,
+        SetProduct,
+        SetProductMaterial,
+        SetEnvironment,
+        SetEnvironmentMaterial,
+        GetScreenshot,
+        GetPdf,
+        GetCallToActionInformation,
+        ShowEmbeddedMenu,
+        ShowOverlayInterface,
+        saveImage,
+      } from 'https://cdn.jsdelivr.net/npm/@3dsource/metabox-front-api@latest/+esm';
+      import { createApp } from 'vue';
+
+      /**
+       * Shim class - manages Metabox API communication
+       * Stores API reference and configurator state
+       * Provides methods to send commands and handle events
+       */
+      class Shim {
+        state = null;
+        ecomConfigurator = null;
+        product = null;
+        products = null;
+        environments = null;
+        productSlots = null;
+        environmentSlots = null;
+        productMaterialsIds = null;
+        api = {};
+
+        ready(api) {
+          this.api = api;
+          this.addApiEventListeners();
+
+          // Hide default configurator UI since we're providing custom controls
+          this.api.sendCommandToMetabox(new ShowEmbeddedMenu(false));
+          this.api.sendCommandToMetabox(new ShowOverlayInterface(false));
+        }
+
+        addApiEventListeners() {
+          this.api.addEventListener('configuratorDataUpdated', (data) =>
+            this.updateConfiguratorData(data),
+          );
+          this.api.addEventListener('ecomConfiguratorDataUpdated', (data) => {
+            this.updateEcomConfiguratorData(data);
+          });
+          this.api.addEventListener('screenshotReady', (data) => {
+            saveImage(data, 'Render.png');
+          });
+        }
+
+        updateConfiguratorData(data) {
+          const {
+            productId,
+            configurator,
+            productMaterialsIds,
+            environmentId,
+          } = data;
+
+          this.productMaterialsIds = productMaterialsIds;
+
+          if (
+            !productId ||
+            !configurator ||
+            Object.keys(this.productMaterialsIds).length === 0
+          ) {
+            return;
+          }
+
+          this.state = data;
+          this.products =
+            configurator.products?.map((item) => item.product) || [];
+          this.environments =
+            configurator.environments?.map((item) => item.environment) || [];
+          this.product = this.products.find(
+            (product) => product.id === productId,
+          );
+
+          const environment = this.environments.find(
+            (env) => env.id === environmentId,
+          );
+
+          this.productSlots =
+            this.product?.slots.filter(
+              (slot) => slot.enabledMaterials.length > 0,
+            ) || [];
+          this.environmentSlots = environment?.slots.filter(
+            (slot) => slot.enabledMaterials.length > 0,
+          );
+        }
+
+        updateEcomConfiguratorData(data) {
+          this.ecomConfigurator = data;
+        }
+
+        sendProduct(productId) {
+          this.api.sendCommandToMetabox(new SetProduct(productId));
+        }
+
+        sendEnvironment(environmentId) {
+          this.api.sendCommandToMetabox(new SetEnvironment(environmentId));
+        }
+
+        sendProductMaterial(slotId, materialId) {
+          this.api.sendCommandToMetabox(
+            new SetProductMaterial(slotId, materialId),
+          );
+        }
+
+        sendEnvironmentMaterial(slotId, materialId) {
+          this.api.sendCommandToMetabox(
+            new SetEnvironmentMaterial(slotId, materialId),
+          );
+        }
+
+        getRender(size) {
+          this.api.sendCommandToMetabox(new GetScreenshot('image/png', size));
+        }
+
+        getPDF() {
+          this.api.sendCommandToMetabox(new GetPdf());
+        }
+
+        getCtaInformation() {
+          this.api.sendCommandToMetabox(new GetCallToActionInformation());
+        }
+      }
+
+      /**
+       * Vue app setup — Hybrid Configurator
+       */
+      createApp({
+        data() {
+          return {
+            shim: new Shim(),
+            config: HYBRID_CONFIG,
+
+            // Hybrid mode state
+            mode: 'prerender',        // 'prerender' | 'realtime'
+            transitioning: false,
+            activeAngle: HYBRID_CONFIG.prerender.angles[0].key,
+
+            // Pre-render selections
+            selectedProduct: HYBRID_CONFIG.prerender.products[0].key,
+            selections: {},           // { slotKey: materialKey }
+          };
+        },
+
+        created() {
+          // Set default selections (first material in each slot)
+          const defaults = {};
+          for (const slot of this.config.prerender.slots) {
+            defaults[slot.key] = slot.materials[0].key;
+          }
+          this.selections = defaults;
+        },
+
+        computed: {
+          /** URL for the main (large) pre-render image */
+          mainImageUrl() {
+            return this.resolveImageUrl(this.activeAngle);
+          },
+
+          /** Thumbnail data for the angle strip */
+          thumbnails() {
+            return this.config.prerender.angles.map((angle) => ({
+              ...angle,
+              url: this.resolveImageUrl(angle.key),
+            }));
+          },
+
+          /** Active product label for the header */
+          activeProductLabel() {
+            const p = this.config.prerender.products.find(
+              (p) => p.key === this.selectedProduct,
+            );
+            return p ? p.label : '';
+          },
+
+          /** Only show slots that have more than one material option */
+          visibleSlots() {
+            return this.config.prerender.slots.filter(
+              (slot) => slot.materials.length > 1,
+            );
+          },
+        },
+
+        watch: {
+          /**
+           * When selections or product change, preload all angle images
+           * for the new combination so thumbnail switching feels instant.
+           */
+          selections: {
+            handler() { this.preloadAngles(); },
+            deep: true,
+          },
+          selectedProduct() { this.preloadAngles(); },
+
+          /**
+           * When the 3D configurator state arrives, end the transition.
+           * The pre-render gallery fades out revealing the live 3D underneath.
+           */
+          'shim.state'(newVal) {
+            if (newVal && this.transitioning) {
+              this.transitioning = false;
+            }
+          },
+        },
+
+        methods: {
+          /**
+           * Build the image URL for a given camera angle using current selections.
+           * Convention: <product>_<slot1-material>_<slot2-material>_..._<angle>.webp
+           */
+          resolveImageUrl(angleKey) {
+            const cfg = this.config.prerender;
+            const materialSegments = cfg.slots.map(
+              (slot) => this.selections[slot.key],
+            );
+            return (
+              cfg.imageBasePath +
+              [this.selectedProduct, ...materialSegments, angleKey].join('_') +
+              (cfg.imageExtension || '.webp')
+            );
+          },
+
+          /** Preload all angle images for the current product + material combo */
+          preloadAngles() {
+            for (const angle of this.config.prerender.angles) {
+              const img = new Image();
+              img.src = this.resolveImageUrl(angle.key);
+            }
+          },
+
+          /** Handle broken images — swap to fallback placeholder */
+          onImageError(event) {
+            const fallback = this.config.prerender.fallbackImage;
+            if (event.target.src !== fallback) {
+              event.target.src = fallback;
+            }
+          },
+
+          /** Select a pre-render product */
+          selectProduct(productKey) {
+            this.selectedProduct = productKey;
+          },
+
+          /** Select a pre-render material */
+          selectMaterial(slotKey, materialKey) {
+            this.selections[slotKey] = materialKey;
+          },
+
+          /** Switch camera angle thumbnail */
+          selectAngle(angleKey) {
+            this.activeAngle = angleKey;
+          },
+
+          /**
+           * Transition from pre-render to real-time 3D mode.
+           * Loads the Metabox iframe and syncs pre-render selections.
+           */
+          enterRealTimeMode() {
+            this.transitioning = true;
+            this.mode = 'realtime';
+
+            this.$nextTick(() => {
+              // Use the current main image as the intro/loading image for visual continuity
+              const introUrl = this.resolveImageUrl(this.activeAngle);
+
+              integrateMetabox(
+                this.config.configuratorId,
+                'embed3DSource',
+                (api) => {
+                  this.shim.ready(api);
+
+                  // Sync pre-render selections → 3D configurator
+                  this.syncSelectionsTo3D();
+
+                  // transitioning stays true — cleared by watcher when shim.state populates
+                },
+                {
+                  standalone: true,
+                  introImage: introUrl,
+                  loadingImage: introUrl,
+                },
+              );
+            });
+          },
+
+          /**
+           * After 3D loads, apply the user's pre-render material choices
+           * so the 3D scene matches what they were looking at.
+           */
+          syncSelectionsTo3D() {
+            const cfg = this.config.prerender;
+            for (const slot of cfg.slots) {
+              const selectedKey = this.selections[slot.key];
+              const material = slot.materials.find((m) => m.key === selectedKey);
+              if (material && slot.metaboxSlotId !== 'REPLACE-WITH-UUID' && material.metaboxMaterialId !== 'REPLACE-UUID') {
+                this.shim.sendProductMaterial(
+                  slot.metaboxSlotId,
+                  material.metaboxMaterialId,
+                );
+              }
+            }
+          },
+        },
+
+        // No mounted() hook — integrateMetabox is called on demand, not on page load
+      }).mount('#app');
+    </script>
+  </head>
+  <body>
+    <noscript>
+      <strong>
+        This app requires JavaScript to run. Please enable JavaScript in your
+        browser.
+      </strong>
+    </noscript>
+
+    <div class="container" id="app">
+      <!-- ==========================================
+           LEFT PANEL
+           ========================================== -->
+      <div class="left-panel">
+
+        <!-- 3D viewport (loads underneath the gallery during transition) -->
+        <div id="embed3DSource" v-if="mode === 'realtime'">
+          <!-- Metabox iframe will be injected here -->
+        </div>
+
+        <!-- Pre-render gallery (overlays 3D during transition, then fades out) -->
+        <Transition name="fade">
+          <div class="prerender-gallery" v-if="mode === 'prerender' || transitioning">
+            <div class="main-image-container">
+              <img
+                :src="mainImageUrl"
+                :alt="activeAngle + ' view'"
+                class="main-image"
+                @error="onImageError"
+              />
+              <button
+                type="button"
+                class="view-3d-button"
+                @click="enterRealTimeMode"
+                :disabled="transitioning"
+              >
+                <span class="spinner" v-if="transitioning"></span>
+                {{ transitioning ? 'Loading 3D...' : 'View in Real-Time 3D' }}
+              </button>
+            </div>
+
+            <div class="thumbnail-strip">
+              <img
+                v-for="thumb in thumbnails"
+                :key="thumb.key"
+                :src="thumb.url"
+                :alt="thumb.label"
+                :title="thumb.label"
+                class="thumbnail"
+                :class="{ active: activeAngle === thumb.key }"
+                @click="selectAngle(thumb.key)"
+                @error="onImageError"
+              />
+            </div>
+          </div>
+        </Transition>
+      </div>
+
+      <!-- ==========================================
+           RIGHT PANEL — Pre-render mode
+           ========================================== -->
+      <div class="right-panel" v-if="mode === 'prerender' || transitioning">
+        <div class="header">
+          <h3>{{ activeProductLabel }}</h3>
+        </div>
+
+        <!-- Product Selector -->
+        <div class="product-selector">
+          <label for="prerender-product-select">Select Product:</label>
+          <select
+            id="prerender-product-select"
+            :value="selectedProduct"
+            @change="selectProduct($event.target.value)"
+          >
+            <option
+              v-for="product in config.prerender.products"
+              :key="product.key"
+              :value="product.key"
+            >
+              {{ product.label }}
+            </option>
+          </select>
+        </div>
+
+        <!-- Curated material options (only slots with multiple choices) -->
+        <div class="product-details">
+          <div
+            class="options-section"
+            v-for="slot in visibleSlots"
+            :key="slot.key"
+          >
+            <p class="option-label">{{ slot.label }}:</p>
+            <div class="options">
+              <button
+                type="button"
+                v-for="material in slot.materials"
+                :key="material.key"
+                :class="{ active: selections[slot.key] === material.key }"
+                @click="selectMaterial(slot.key, material.key)"
+              >
+                {{ material.label }}
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Secondary CTA to upgrade to 3D -->
+        <div class="upgrade-section">
+          <button
+            type="button"
+            class="upgrade-button"
+            @click="enterRealTimeMode"
+          >
+            View All Options in Real-Time 3D
+          </button>
+          <p class="upgrade-hint">
+            Explore every material, environment, and camera angle
+          </p>
+        </div>
+      </div>
+
+      <!-- ==========================================
+           RIGHT PANEL — Real-time 3D mode (loaded)
+           ========================================== -->
+      <div class="right-panel" v-if="mode === 'realtime' && !transitioning">
+        <!-- Export Actions -->
+        <div class="add-to-cart">
+          <button type="button" @click="shim.getRender()">
+            Take Render
+          </button>
+          <button type="button" @click="shim.getRender({ x: 1024, y: 1024 })">
+            Take Render 1024x1024
+          </button>
+          <button type="button" @click="shim.getPDF()">
+            Generate PDF
+          </button>
+          <div v-if="shim.ecomConfigurator?.cta?.enabled">
+            <button type="button" @click="shim.getCtaInformation()">
+              {{ shim.ecomConfigurator?.cta?.label }}
+            </button>
+          </div>
+        </div>
+
+        <!-- Product Title -->
+        <div class="header">
+          <h3>{{ shim.product?.title }}</h3>
+        </div>
+
+        <!-- Product Selector -->
+        <div class="product-selector">
+          <label for="product-select">Select Product:</label>
+          <select
+            @change="shim.sendProduct(shim.state.productId)"
+            id="product-select"
+            v-model="shim.state.productId"
+          >
+            <option
+              :key="product.id"
+              :value="product.id"
+              v-for="product in shim.products"
+            >
+              {{ product.title }}
+            </option>
+          </select>
+        </div>
+
+        <!-- Product Material Slots -->
+        <div class="product-details">
+          <div
+            class="options-section"
+            v-for="slot in shim.productSlots"
+            :key="slot.id"
+          >
+            <p class="option-label">{{ slot.label }}:</p>
+            <div class="options">
+              <button
+                type="button"
+                :key="material.id"
+                :class="{ active: shim.productMaterialsIds?.[shim.state.productId]?.[slot.id] === material.id }"
+                @click="shim.sendProductMaterial(slot.id, material.id)"
+                v-for="material in slot.enabledMaterials"
+              >
+                {{ material.title }}
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Environment Controls -->
+        <div v-if="shim.environmentSlots">
+          <div class="product-selector">
+            <label for="env-select">Select Environment:</label>
+            <select
+              @change="shim.sendEnvironment(shim.state.environmentId)"
+              id="env-select"
+              v-model="shim.state.environmentId"
+            >
+              <option
+                :key="env.id"
+                :value="env.id"
+                v-for="env in shim.environments"
+              >
+                {{ env.title }}
+              </option>
+            </select>
+          </div>
+
+          <!-- Environment Material Slots -->
+          <div class="product-details">
+            <div
+              class="options-section"
+              v-for="slot in shim.environmentSlots"
+              :key="slot.id"
+            >
+              <p class="option-label">{{ slot.label }}:</p>
+              <div class="options">
+                <button
+                  type="button"
+                  :key="material.id"
+                  :class="{ active: shim.state.environmentMaterialsIds?.[shim.state.environmentId]?.[slot.id] === material.id }"
+                  @click="shim.sendEnvironmentMaterial(slot.id, material.id)"
+                  v-for="material in slot.enabledMaterials"
+                >
+                  {{ material.title }}
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
