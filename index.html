@@ -277,6 +277,50 @@
       }
 
       /* ============================================
+         Product Cards
+         ============================================ */
+
+      .product-cards {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .product-card {
+        width: 80px;
+        border: 2px solid transparent;
+        border-radius: 8px;
+        overflow: hidden;
+        cursor: pointer;
+        background: #fff;
+        transition: border-color 0.15s ease;
+      }
+
+      .product-card:hover {
+        border-color: #999;
+      }
+
+      .product-card.active {
+        border-color: #000;
+      }
+
+      .product-card-image {
+        width: 100%;
+        height: 80px;
+        object-fit: cover;
+        display: block;
+        background-color: #f5f5f5;
+      }
+
+      .product-card-label {
+        padding: 4px 2px;
+        font-size: 10px;
+        color: #333;
+        text-align: center;
+        line-height: 1.2;
+      }
+
+      /* ============================================
          Secondary CTA (pre-render → 3D in right panel)
          ============================================ */
 
@@ -598,14 +642,14 @@
            * Build the image URL for a given camera angle using current selections.
            * Convention: <product>_<slot1-material>_<slot2-material>_..._<angle>.webp
            */
-          resolveImageUrl(angleKey) {
+          resolveImageUrl(angleKey, productKey) {
             const cfg = this.config.prerender;
             const materialSegments = cfg.slots.map(
               (slot) => this.selections[slot.key],
             );
             return (
               cfg.imageBasePath +
-              [this.selectedProduct, ...materialSegments, angleKey].join('_') +
+              [productKey || this.selectedProduct, ...materialSegments, angleKey].join('_') +
               (cfg.imageExtension || '.webp')
             );
           },
@@ -790,22 +834,26 @@
           <h3>{{ activeProductLabel }}</h3>
         </div>
 
-        <!-- Product Selector -->
-        <div class="product-selector">
-          <label for="prerender-product-select">Select Product:</label>
-          <select
-            id="prerender-product-select"
-            :value="selectedProduct"
-            @change="selectProduct($event.target.value)"
-          >
-            <option
+        <!-- Product Cards -->
+        <div class="options-section">
+          <p class="option-label">Product:</p>
+          <div class="product-cards">
+            <div
               v-for="product in config.prerender.products"
               :key="product.key"
-              :value="product.key"
+              class="product-card"
+              :class="{ active: selectedProduct === product.key }"
+              @click="selectProduct(product.key)"
             >
-              {{ product.label }}
-            </option>
-          </select>
+              <img
+                :src="resolveImageUrl('front', product.key)"
+                :alt="product.label"
+                class="product-card-image"
+                @error="onImageError"
+              />
+              <div class="product-card-label">{{ product.label }}</div>
+            </div>
+          </div>
         </div>
 
         <!-- Curated material options (only slots with multiple choices) -->
