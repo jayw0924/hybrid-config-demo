@@ -340,6 +340,7 @@
           ],
 
           // Products available in pre-render mode (first = default)
+          // Labels must match the product titles in the Metabox configurator
           products: [
             { key: 'jagger-dining-side-chair', label: 'Jagger Dining Side Chair' },
             { key: 'jagger-dining-arm-chair', label: 'Jagger Dining Arm Chair' },
@@ -349,33 +350,30 @@
           ],
 
           // Curated material slots (order = filename segment order)
-          // Replace UUIDs with actual Metabox slot/material IDs
+          // Material labels must match the material titles in the Metabox configurator
           slots: [
             {
               key: 'upholstery',
-              label: 'Upholstery',
-              metaboxSlotId: 'REPLACE-WITH-UUID',
+              label: 'Seat & Backrest',
               materials: [
-                { key: 'arh-leather-carbon', label: 'Carbon Leather', metaboxMaterialId: 'REPLACE-UUID' },
-                { key: 'arh-leather-buckeye', label: 'Buckeye Leather', metaboxMaterialId: 'REPLACE-UUID' },
-                { key: 'arh-cloth-cary-linen', label: 'Cary Linen', metaboxMaterialId: 'REPLACE-UUID' },
-                { key: 'arh-cloth-downy-ebony', label: 'Downy Ebony', metaboxMaterialId: 'REPLACE-UUID' },
+                { key: 'arh-leather-carbon', label: 'Arh Leather Carbon' },
+                { key: 'arh-leather-buckeye', label: 'Arh Leather Buckeye' },
+                { key: 'arh-cloth-cary-linen', label: 'Arh Cloth Cary Linen' },
+                { key: 'arh-cloth-downy-ebony', label: 'Arh Cloth Downy Ebony' },
               ],
             },
             {
               key: 'legs',
-              label: 'Legs',
-              metaboxSlotId: 'REPLACE-WITH-UUID',
+              label: 'Metal Finish',
               materials: [
-                { key: 'brass-jagger', label: 'Brass', metaboxMaterialId: 'REPLACE-UUID' },
+                { key: 'brass-jagger', label: 'Brass' },
               ],
             },
             {
               key: 'wood',
-              label: 'Wood',
-              metaboxSlotId: 'REPLACE-WITH-UUID',
+              label: 'Frame',
               materials: [
-                { key: 'ebony-kensington-jagger', label: 'Ebony Kensington', metaboxMaterialId: 'REPLACE-UUID' },
+                { key: 'ebony-kensington-jagger', label: 'Ebony Kensington' },
               ],
             },
           ],
@@ -585,12 +583,12 @@
           selectedProduct() { this.preloadAngles(); },
 
           /**
-           * When the 3D configurator state arrives, end the transition.
-           * The pre-render gallery fades out revealing the live 3D underneath.
+           * When the 3D configurator state arrives during transition,
+           * sync pre-render selections to the 3D scene by name matching.
            */
           'shim.state'(newVal) {
             if (newVal && this.transitioning) {
-              this.transitioning = false;
+              this.syncSelectionsTo3D();
             }
           },
         },
@@ -660,11 +658,7 @@
                 'embed3DSource',
                 (api) => {
                   this.shim.ready(api);
-
-                  // Sync pre-render selections → 3D configurator
-                  this.syncSelectionsTo3D();
-
-                  // transitioning stays true — cleared by watcher when shim.state populates
+                  // Sync happens automatically when shim.state populates (see watcher)
                 },
                 {
                   standalone: true,
@@ -676,21 +670,51 @@
           },
 
           /**
-           * After 3D loads, apply the user's pre-render material choices
-           * so the 3D scene matches what they were looking at.
+           * Match pre-render selections to the 3D configurator by name.
+           * Two-phase: first sync product (if different), then materials.
+           * Called by the shim.state watcher each time configurator data updates.
            */
           syncSelectionsTo3D() {
             const cfg = this.config.prerender;
-            for (const slot of cfg.slots) {
-              const selectedKey = this.selections[slot.key];
-              const material = slot.materials.find((m) => m.key === selectedKey);
-              if (material && slot.metaboxSlotId !== 'REPLACE-WITH-UUID' && material.metaboxMaterialId !== 'REPLACE-UUID') {
-                this.shim.sendProductMaterial(
-                  slot.metaboxSlotId,
-                  material.metaboxMaterialId,
-                );
+            const normalize = (s) => s.toLowerCase().trim();
+
+            // Phase 1: Match and sync product by label → title
+            const selectedProductConfig = cfg.products.find(
+              (p) => p.key === this.selectedProduct,
+            );
+            if (selectedProductConfig && this.shim.products) {
+              const matchedProduct = this.shim.products.find(
+                (p) => normalize(p.title) === normalize(selectedProductConfig.label),
+              );
+              if (matchedProduct && matchedProduct.id !== this.shim.state.productId) {
+                // Product differs — switch it; watcher will re-call us with new product data
+                this.shim.sendProduct(matchedProduct.id);
+                return;
               }
             }
+
+            // Phase 2: Match and sync materials by label → title
+            if (this.shim.productSlots) {
+              for (const slot of cfg.slots) {
+                const selectedKey = this.selections[slot.key];
+                const materialConfig = slot.materials.find((m) => m.key === selectedKey);
+                if (!materialConfig) continue;
+
+                // Search all Metabox slots for a material with a matching title
+                for (const metaboxSlot of this.shim.productSlots) {
+                  const matched = metaboxSlot.enabledMaterials.find(
+                    (m) => normalize(m.title) === normalize(materialConfig.label),
+                  );
+                  if (matched) {
+                    this.shim.sendProductMaterial(metaboxSlot.id, matched.id);
+                    break;
+                  }
+                }
+              }
+            }
+
+            // Sync complete — end transition, gallery fades out
+            this.transitioning = false;
           },
         },
 
