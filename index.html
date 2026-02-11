@@ -416,7 +416,7 @@
       .swatch-option {
         width: 56px;
         height: 56px;
-        border-radius: 50%;
+        border-radius: 0;
         border: 2px solid transparent;
         cursor: pointer;
         overflow: hidden;
@@ -431,14 +431,13 @@
 
       .swatch-option.active {
         border-color: #1e372f;
-        box-shadow: 0 0 0 2px #fff, 0 0 0 4px #1e372f;
       }
 
       .swatch-option img {
         width: 100%;
         height: 100%;
         object-fit: cover;
-        border-radius: 50%;
+        border-radius: 0;
         display: block;
       }
 
@@ -455,6 +454,7 @@
         align-items: center;
         justify-content: center;
         border: 2px solid #1e372f;
+        border-radius: 0;
         font-size: 9px;
         font-weight: 500;
         color: #fff;
@@ -469,8 +469,6 @@
       .swatch-option.view-more:hover {
         background: #4b5f59;
         border-color: #4b5f59;
-        transform: none;
-        box-shadow: none;
       }
 
       /* ============================================
@@ -1049,8 +1047,8 @@
 
           /** Handle broken images — swap to fallback placeholder */
           onImageError(event) {
-            const fallback = this.config.prerender.fallbackImage;
-            if (event.target.src !== fallback) {
+            const fallback = './images/swatches/placeholder.webp';
+            if (event.target.src !== fallback && !event.target.src.includes('placeholder.webp')) {
               event.target.src = fallback;
             }
           },
@@ -1375,17 +1373,26 @@
             :key="slot.id"
           >
             <p class="option-label">{{ slot.label }}</p>
-            <div class="options">
+            <div class="swatch-options">
               <button
                 type="button"
                 :key="material.id"
+                class="swatch-option"
                 :class="{ active: shim.productMaterialsIds?.[shim.state.productId]?.[slot.id] === material.id }"
+                :title="material.title"
                 @click="shim.sendProductMaterial(slot.id, material.id)"
                 v-for="material in slot.enabledMaterials"
               >
-                {{ material.title }}
+                <img
+                  :src="'./images/swatches/placeholder-' + material.id + '.webp'"
+                  :alt="material.title"
+                  @error="onImageError"
+                />
               </button>
             </div>
+            <p class="swatch-name">
+              {{ shim.productSlots.find(s => s.id === slot.id)?.enabledMaterials.find(m => shim.productMaterialsIds?.[shim.state.productId]?.[slot.id] === m.id)?.title }}
+            </p>
           </div>
         </div>
 
@@ -1415,18 +1422,27 @@
               v-for="slot in shim.environmentSlots"
               :key="slot.id"
             >
-              <p class="option-label">{{ slot.label }}:</p>
-              <div class="options">
+              <p class="option-label">{{ slot.label }}</p>
+              <div class="swatch-options">
                 <button
                   type="button"
                   :key="material.id"
+                  class="swatch-option"
                   :class="{ active: shim.state.environmentMaterialsIds?.[shim.state.environmentId]?.[slot.id] === material.id }"
+                  :title="material.title"
                   @click="shim.sendEnvironmentMaterial(slot.id, material.id)"
                   v-for="material in slot.enabledMaterials"
                 >
-                  {{ material.title }}
+                  <img
+                    :src="'./images/swatches/env-' + material.id + '.webp'"
+                    :alt="material.title"
+                    @error="onImageError"
+                  />
                 </button>
               </div>
+              <p class="swatch-name">
+                {{ shim.environmentSlots.find(s => s.id === slot.id)?.enabledMaterials.find(m => shim.state.environmentMaterialsIds?.[shim.state.environmentId]?.[slot.id] === m.id)?.title }}
+              </p>
             </div>
           </div>
         </details>
