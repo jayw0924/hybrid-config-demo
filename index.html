@@ -375,7 +375,7 @@
         cursor: pointer;
         overflow: hidden;
         padding: 0;
-        background: none;
+        background: #f2f0ec;
         transition: border-color 0.15s ease;
       }
 
@@ -648,14 +648,14 @@
               key: 'legs',
               label: 'Metal Finish',
               materials: [
-                { key: 'brass-jagger', label: 'Brass' },
+                { key: 'brass-jagger', label: 'Brass', swatch: './images/swatches/brass-jagger.webp' },
               ],
             },
             {
               key: 'wood',
               label: 'Frame',
               materials: [
-                { key: 'ebony-kensington-jagger', label: 'Ebony Kensington' },
+                { key: 'ebony-kensington-jagger', label: 'Ebony Kensington', swatch: './images/swatches/ebony-kensington-jagger.webp' },
               ],
             },
           ],
@@ -845,11 +845,9 @@
             return p ? p.label : '';
           },
 
-          /** Only show slots that have more than one material option */
+          /** Return all material slots for display */
           visibleSlots() {
-            return this.config.prerender.slots.filter(
-              (slot) => slot.materials.length > 1,
-            );
+            return this.config.prerender.slots;
           },
         },
 
@@ -1046,11 +1044,11 @@
               <button
                 type="button"
                 class="view-3d-button"
-                @click="enterRealTimeMode"
-                :disabled="transitioning"
+                v-if="transitioning"
+                disabled
               >
-                <span class="spinner" v-if="transitioning"></span>
-                {{ transitioning ? 'Loading 3D...' : 'View in Real-Time 3D' }}
+                <span class="spinner"></span>
+                Loading 3D...
               </button>
             </div>
           </Transition>
