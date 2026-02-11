@@ -75,10 +75,13 @@
         min-height: 0;
       }
 
-      /* Fixed 50/50 split - no grow/shrink prevents viewport jitter */
-      .left-panel,
+      /* Viewport-focused split (60/40) - no grow/shrink prevents viewport jitter */
+      .left-panel {
+        flex: 0 0 60%;
+      }
+
       .right-panel {
-        flex: 0 0 50%;
+        flex: 0 0 40%;
       }
 
       /* Left panel: column flex with viewport + thumbnails */
@@ -92,7 +95,8 @@
       /* Right panel scrolls independently of viewport */
       .right-panel {
         overflow: auto;
-        padding: 40px 48px;
+        padding: 40px 40px;
+        border-left: 1px solid #e5e5e5;
       }
 
       /* Viewport area takes remaining space above thumbnails */
@@ -231,11 +235,19 @@
       }
 
       .product-subtitle {
-        margin: 0 0 32px;
+        margin: 0 0 8px;
         font-size: 14px;
         font-weight: 300;
         color: #888;
         letter-spacing: 0.02em;
+      }
+
+      .product-dimensions {
+        margin: 0 0 32px;
+        font-size: 13px;
+        font-weight: 300;
+        color: #999;
+        letter-spacing: 0.01em;
       }
 
       .header {
@@ -661,7 +673,12 @@
         }
 
         .product-subtitle {
+          margin-bottom: 6px;
+        }
+
+        .product-dimensions {
           margin-bottom: 24px;
+          font-size: 12px;
         }
 
         /* Scale down product cards and swatches */
@@ -719,6 +736,10 @@
           font-size: 20px;
         }
 
+        .product-dimensions {
+          font-size: 11px;
+        }
+
         .product-card {
           width: 48px;
           height: 48px;
@@ -771,11 +792,11 @@
           // Products available in pre-render mode (first = default)
           // Labels must match the product titles in the Metabox configurator
           products: [
-            { key: 'jagger-dining-side-chair', label: 'Jagger Dining Side Chair' },
-            { key: 'jagger-dining-arm-chair', label: 'Jagger Dining Arm Chair' },
-            { key: 'arhaus-jagger-chair', label: 'Arhaus Jagger Chair' },
-            { key: 'arhaus-jagger-dining-bench', label: 'Arhaus Jagger Dining Bench' },
-            { key: 'jagger-barstool', label: 'Jagger Barstool' },
+            { key: 'jagger-dining-side-chair', label: 'Jagger Dining Side Chair', displayName: 'Jagger Dining Side Chair', dimensions: '20" Width x 21" Depth x 29.5" Height' },
+            { key: 'jagger-dining-arm-chair', label: 'Jagger Dining Arm Chair', displayName: 'Jagger Dining Arm Chair', dimensions: '22" Width x 21.5" Depth x 29.5" Height' },
+            { key: 'arhaus-jagger-chair', label: 'Arhaus Jagger Chair', displayName: 'Jagger Chair', dimensions: '27.5" Width x 27" Depth x 30" Height' },
+            { key: 'arhaus-jagger-dining-bench', label: 'Arhaus Jagger Dining Bench', displayName: 'Jagger Dining Bench', dimensions: '61" Width x 22.5" Depth x 29.5" Height' },
+            { key: 'jagger-barstool', label: 'Jagger Barstool', displayName: 'Jagger Barstool', dimensions: '22.25" Width x 21.5" Depth x 41.75" Height' },
           ],
 
           // Curated material slots (order = filename segment order)
@@ -984,17 +1005,35 @@
             }));
           },
 
-          /** Active product label for the header */
-          activeProductLabel() {
+          /** Active product display name */
+          activeProductName() {
             const p = this.config.prerender.products.find(
               (p) => p.key === this.selectedProduct,
             );
-            return p ? p.label : '';
+            return p ? p.displayName : '';
+          },
+
+          /** Active product dimensions */
+          activeProductDimensions() {
+            const p = this.config.prerender.products.find(
+              (p) => p.key === this.selectedProduct,
+            );
+            return p ? p.dimensions : '';
           },
 
           /** Return all material slots for display */
           visibleSlots() {
             return this.config.prerender.slots;
+          },
+
+          /** Get dimensions for a product by matching title */
+          getProductDimensions() {
+            if (!this.shim.product) return '';
+            const normalize = (s) => s.toLowerCase().trim();
+            const matched = this.config.prerender.products.find(
+              (p) => normalize(p.label) === normalize(this.shim.product.title)
+            );
+            return matched ? matched.dimensions : '';
           },
         },
 
@@ -1239,8 +1278,9 @@
            ========================================== -->
       <div class="right-panel" v-if="mode === 'prerender' || transitioning">
         <!-- Product name (Arhaus-style) -->
-        <h2 class="product-name">{{ activeProductLabel }}</h2>
+        <h2 class="product-name">{{ activeProductName }}</h2>
         <p class="product-subtitle">Jagger Collection</p>
+        <p class="product-dimensions">{{ activeProductDimensions }}</p>
 
         <!-- Product Cards -->
         <div class="options-section">
@@ -1346,6 +1386,7 @@
         <!-- Product name (Arhaus-style) -->
         <h2 class="product-name">{{ shim.product?.title }}</h2>
         <p class="product-subtitle">Jagger Collection</p>
+        <p class="product-dimensions">{{ getProductDimensions }}</p>
 
         <!-- Product Thumbnails -->
         <div class="options-section">
