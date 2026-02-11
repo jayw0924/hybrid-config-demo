@@ -24,8 +24,9 @@
         margin: 0;
         overflow: hidden;
         height: 100vh;
-        font-family: Arial, sans-serif;
-        background-color: #f9fafb;
+        font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        background-color: #fafaf8;
+        color: #1a1a1a;
       }
 
       /* Container with absolute positioning prevents layout shifts */
@@ -34,8 +35,34 @@
         width: 100%;
         height: 100%;
         display: flex;
+        flex-direction: column;
         overflow: hidden;
-        background-color: white;
+        background-color: #fafaf8;
+      }
+
+      /* Page header */
+      .page-header {
+        flex: 0 0 auto;
+        padding: 16px 32px;
+        border-bottom: 1px solid #e8e6e1;
+        background-color: #fff;
+      }
+
+      .page-header h1 {
+        margin: 0;
+        font-size: 15px;
+        font-weight: 500;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: #1a1a1a;
+      }
+
+      /* Content area below header */
+      .content {
+        flex: 1;
+        display: flex;
+        overflow: hidden;
+        min-height: 0;
       }
 
       /* Fixed 50/50 split - no grow/shrink prevents viewport jitter */
@@ -54,7 +81,7 @@
       /* Right panel scrolls independently of viewport */
       .right-panel {
         overflow: auto;
-        padding: 20px;
+        padding: 32px;
       }
 
       /* Viewport area takes remaining space above thumbnails */
@@ -83,7 +110,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        background-color: #f5f5f5;
+        background-color: #f2f0ec;
       }
 
       /* Fade-out transition when switching to 3D */
@@ -111,12 +138,15 @@
         left: 50%;
         transform: translateX(-50%);
         padding: 12px 28px;
-        background-color: #000;
+        background-color: rgba(26, 26, 26, 0.85);
+        backdrop-filter: blur(8px);
         color: #fff;
         border: none;
-        border-radius: 24px;
-        font-size: 14px;
-        font-weight: 600;
+        border-radius: 6px;
+        font-family: inherit;
+        font-size: 13px;
+        font-weight: 500;
+        letter-spacing: 0.04em;
         cursor: pointer;
         white-space: nowrap;
         z-index: 2;
@@ -124,25 +154,25 @@
       }
 
       .view-3d-button:hover {
-        background-color: #222;
+        background-color: rgba(26, 26, 26, 0.95);
       }
 
       .thumbnail-strip {
-        flex: 0 0 100px;
+        flex: 0 0 90px;
         display: flex;
         align-items: center;
         justify-content: center;
         gap: 10px;
         padding: 10px;
         background-color: #fff;
-        border-top: 1px solid #e0e0e0;
+        border-top: 1px solid #e8e6e1;
       }
 
       .thumbnail {
-        width: 80px;
-        height: 80px;
+        width: 72px;
+        height: 72px;
         object-fit: cover;
-        border-radius: 8px;
+        border-radius: 6px;
         border: 2px solid transparent;
         cursor: pointer;
         transition: border-color 0.15s ease;
@@ -153,7 +183,7 @@
       }
 
       .thumbnail.active {
-        border-color: #000;
+        border-color: #1a1a1a;
       }
 
       /* Spinner for the 3D loading indicator on the view-3d-button */
@@ -180,14 +210,15 @@
          ============================================ */
 
       .header {
-        text-align: center;
-        margin-bottom: 20px;
+        margin-bottom: 24px;
       }
 
       .header h3 {
         margin: 0;
-        font-size: 24px;
-        color: #333;
+        font-size: 22px;
+        font-weight: 400;
+        letter-spacing: 0.02em;
+        color: #1a1a1a;
       }
 
       .product-selector {
@@ -196,37 +227,45 @@
 
       .product-selector label {
         display: block;
-        font-weight: bold;
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
         margin-bottom: 8px;
-        color: #333;
+        color: #888;
       }
 
       select {
         width: 100%;
         padding: 10px 40px 10px 15px;
-        border: 1px solid #ccc;
+        border: 1px solid #d4d0c8;
         background-color: white;
         cursor: pointer;
-        border-radius: 10px;
+        border-radius: 6px;
         appearance: none;
-        background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23333' d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+        font-family: inherit;
+        font-size: 14px;
+        background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23999' d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
         background-repeat: no-repeat;
         background-position: right 10px center;
         background-size: 12px;
       }
 
       .product-details {
-        margin-top: 20px;
+        margin-top: 24px;
       }
 
       .options-section {
-        margin-bottom: 20px;
+        margin-bottom: 24px;
       }
 
       .option-label {
-        font-weight: bold;
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
         margin-bottom: 10px;
-        color: #333;
+        color: #888;
       }
 
       .options {
@@ -236,44 +275,50 @@
       }
 
       button {
-        padding: 10px 15px;
-        border: 1px solid #ccc;
+        padding: 10px 16px;
+        border: 1px solid #d4d0c8;
         background-color: white;
         cursor: pointer;
-        border-radius: 10px;
+        border-radius: 6px;
+        font-family: inherit;
+        font-size: 13px;
+        color: #1a1a1a;
         transition: background-color 0.15s ease, border-color 0.15s ease;
       }
 
       button:hover {
-        background-color: #f5f5f5;
+        border-color: #999;
+        background-color: #fafaf8;
       }
 
       button:focus-visible {
-        outline: 2px solid #4c9ffe;
+        outline: 2px solid #1a1a1a;
         outline-offset: 2px;
       }
 
       .options button.active {
-        border-color: black;
-        background-color: #000;
+        border-color: #1a1a1a;
+        background-color: #1a1a1a;
         color: white;
       }
 
       .add-to-cart {
-        margin-bottom: 20px;
+        margin-bottom: 24px;
         display: flex;
         flex-wrap: wrap;
         gap: 8px;
       }
 
       .add-to-cart button {
-        border: 1px solid #000;
-        background-color: #000;
+        border: 1px solid #1a1a1a;
+        background-color: #1a1a1a;
         color: #fff;
+        font-size: 12px;
+        letter-spacing: 0.04em;
       }
 
       .add-to-cart button:hover {
-        background-color: #111;
+        background-color: #333;
       }
 
       /* ============================================
@@ -287,12 +332,13 @@
       }
 
       .product-card {
-        width: 80px;
+        width: 72px;
+        height: 72px;
+        object-fit: cover;
+        border-radius: 6px;
         border: 2px solid transparent;
-        border-radius: 8px;
-        overflow: hidden;
         cursor: pointer;
-        background: #fff;
+        background-color: #f2f0ec;
         transition: border-color 0.15s ease;
       }
 
@@ -301,23 +347,58 @@
       }
 
       .product-card.active {
-        border-color: #000;
+        border-color: #1a1a1a;
       }
 
-      .product-card-image {
+      .product-card-name {
+        margin: 6px 0 0;
+        font-size: 13px;
+        font-weight: 400;
+        color: #1a1a1a;
+      }
+
+      /* ============================================
+         Material Swatches
+         ============================================ */
+
+      .swatch-options {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .swatch-option {
+        width: 72px;
+        height: 72px;
+        border-radius: 6px;
+        border: 2px solid transparent;
+        cursor: pointer;
+        overflow: hidden;
+        padding: 0;
+        background: none;
+        transition: border-color 0.15s ease;
+      }
+
+      .swatch-option:hover {
+        border-color: #999;
+      }
+
+      .swatch-option.active {
+        border-color: #1a1a1a;
+      }
+
+      .swatch-option img {
         width: 100%;
-        height: 80px;
+        height: 100%;
         object-fit: cover;
+        border-radius: 4px;
         display: block;
-        background-color: #f5f5f5;
       }
 
-      .product-card-label {
-        padding: 4px 2px;
-        font-size: 10px;
-        color: #333;
-        text-align: center;
-        line-height: 1.2;
+      .swatch-name {
+        margin: 8px 0 0;
+        font-size: 13px;
+        color: #1a1a1a;
       }
 
       /* ============================================
@@ -325,34 +406,37 @@
          ============================================ */
 
       .upgrade-section {
-        margin-top: 30px;
-        padding-top: 20px;
-        border-top: 1px solid #e0e0e0;
+        margin-top: 32px;
+        padding-top: 24px;
+        border-top: 1px solid #e8e6e1;
         text-align: center;
       }
 
       .upgrade-button {
         display: inline-block;
-        padding: 12px 24px;
+        padding: 14px 32px;
         background-color: #fff;
-        color: #000;
-        border: 2px solid #000;
-        border-radius: 24px;
-        font-size: 14px;
-        font-weight: 600;
+        color: #1a1a1a;
+        border: 1.5px solid #1a1a1a;
+        border-radius: 6px;
+        font-family: inherit;
+        font-size: 13px;
+        font-weight: 500;
+        letter-spacing: 0.04em;
         cursor: pointer;
         transition: background-color 0.15s ease, color 0.15s ease;
       }
 
       .upgrade-button:hover {
-        background-color: #000;
+        background-color: #1a1a1a;
         color: #fff;
       }
 
       .upgrade-hint {
         margin-top: 8px;
-        font-size: 12px;
-        color: #999;
+        font-size: 11px;
+        color: #aaa;
+        letter-spacing: 0.02em;
       }
     </style>
 
@@ -400,10 +484,10 @@
               key: 'upholstery',
               label: 'Seat & Backrest',
               materials: [
-                { key: 'arh-leather-carbon', label: 'Arh Leather Carbon' },
-                { key: 'arh-leather-buckeye', label: 'Arh Leather Buckeye' },
-                { key: 'arh-cloth-cary-linen', label: 'Arh Cloth Cary Linen' },
-                { key: 'arh-cloth-downy-ebony', label: 'Arh Cloth Downy Ebony' },
+                { key: 'arh-leather-carbon', label: 'Arh Leather Carbon', swatch: './images/swatches/arh-leather-carbon.webp' },
+                { key: 'arh-leather-buckeye', label: 'Arh Leather Buckeye', swatch: './images/swatches/arh-leather-buckeye.webp' },
+                { key: 'arh-cloth-cary-linen', label: 'Arh Cloth Cary Linen', swatch: './images/swatches/arh-cloth-cary-linen.webp' },
+                { key: 'arh-cloth-downy-ebony', label: 'Arh Cloth Downy Ebony', swatch: './images/swatches/arh-cloth-downy-ebony.webp' },
               ],
             },
             {
@@ -775,6 +859,14 @@
     </noscript>
 
     <div class="container" id="app">
+      <!-- Page Header -->
+      <div class="page-header">
+        <h1>Jagger Collection</h1>
+      </div>
+
+      <!-- Content: viewport + controls -->
+      <div class="content">
+
       <!-- ==========================================
            LEFT PANEL
            ========================================== -->
@@ -830,30 +922,23 @@
            RIGHT PANEL — Pre-render mode
            ========================================== -->
       <div class="right-panel" v-if="mode === 'prerender' || transitioning">
-        <div class="header">
-          <h3>{{ activeProductLabel }}</h3>
-        </div>
-
         <!-- Product Cards -->
         <div class="options-section">
           <p class="option-label">Product:</p>
           <div class="product-cards">
-            <div
+            <img
               v-for="product in config.prerender.products"
               :key="product.key"
+              :src="resolveImageUrl('front', product.key)"
+              :alt="product.label"
+              :title="product.label"
               class="product-card"
               :class="{ active: selectedProduct === product.key }"
               @click="selectProduct(product.key)"
-            >
-              <img
-                :src="resolveImageUrl('front', product.key)"
-                :alt="product.label"
-                class="product-card-image"
-                @error="onImageError"
-              />
-              <div class="product-card-label">{{ product.label }}</div>
-            </div>
+              @error="onImageError"
+            />
           </div>
+          <p class="product-card-name">{{ activeProductLabel }}</p>
         </div>
 
         <!-- Curated material options (only slots with multiple choices) -->
@@ -864,7 +949,29 @@
             :key="slot.key"
           >
             <p class="option-label">{{ slot.label }}:</p>
-            <div class="options">
+
+            <!-- Swatch thumbnails (when materials have swatch images) -->
+            <template v-if="slot.materials[0]?.swatch">
+              <div class="swatch-options">
+                <button
+                  type="button"
+                  v-for="material in slot.materials"
+                  :key="material.key"
+                  class="swatch-option"
+                  :class="{ active: selections[slot.key] === material.key }"
+                  :title="material.label"
+                  @click="selectMaterial(slot.key, material.key)"
+                >
+                  <img :src="material.swatch" :alt="material.label" />
+                </button>
+              </div>
+              <p class="swatch-name">
+                {{ slot.materials.find(m => m.key === selections[slot.key])?.label }}
+              </p>
+            </template>
+
+            <!-- Text buttons (fallback for slots without swatches) -->
+            <div class="options" v-else>
               <button
                 type="button"
                 v-for="material in slot.materials"
@@ -1002,6 +1109,7 @@
           </div>
         </div>
       </div>
+      </div><!-- .content -->
     </div>
   </body>
 </html>
