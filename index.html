@@ -438,6 +438,107 @@
         color: #aaa;
         letter-spacing: 0.02em;
       }
+
+      /* ============================================
+         Mobile Responsive
+         ============================================ */
+
+      @media (max-width: 768px) {
+        /* Let the page scroll naturally */
+        body {
+          overflow: auto;
+          height: auto;
+        }
+
+        .container {
+          position: relative;
+          height: auto;
+          min-height: 100vh;
+          overflow: visible;
+        }
+
+        .page-header {
+          padding: 14px 20px;
+        }
+
+        /* Stack panels vertically */
+        .content {
+          flex-direction: column;
+          overflow: visible;
+        }
+
+        .left-panel,
+        .right-panel {
+          flex: none;
+          width: 100%;
+        }
+
+        /* Viewport gets a fixed aspect ratio instead of filling height */
+        .left-panel {
+          height: auto;
+        }
+
+        .viewport-container {
+          aspect-ratio: 4 / 3;
+          flex: none;
+        }
+
+        .thumbnail-strip {
+          flex: 0 0 auto;
+          padding: 8px;
+          gap: 8px;
+        }
+
+        .thumbnail {
+          width: 56px;
+          height: 56px;
+        }
+
+        /* Right panel fits content */
+        .right-panel {
+          padding: 24px 20px;
+        }
+
+        /* Scale down product cards and swatches */
+        .product-card {
+          width: 60px;
+          height: 60px;
+        }
+
+        .swatch-option {
+          width: 60px;
+          height: 60px;
+        }
+
+        .view-3d-button {
+          padding: 10px 22px;
+          font-size: 12px;
+          bottom: 14px;
+        }
+
+        .upgrade-button {
+          width: 100%;
+          padding: 14px;
+        }
+      }
+
+      /* Small phones */
+      @media (max-width: 400px) {
+        .product-card {
+          width: 52px;
+          height: 52px;
+        }
+
+        .swatch-option {
+          width: 52px;
+          height: 52px;
+        }
+
+        .thumbnail {
+          width: 48px;
+          height: 48px;
+        }
+      }
     </style>
 
     <!-- Vue 3 import map -->
