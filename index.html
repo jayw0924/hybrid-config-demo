@@ -440,31 +440,69 @@
       }
 
       /* ============================================
+         Collapsible Environment
+         ============================================ */
+
+      .env-details {
+        margin-top: 24px;
+        border-top: 1px solid #e8e6e1;
+        padding-top: 16px;
+      }
+
+      .env-details summary {
+        cursor: pointer;
+        list-style: none;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 0;
+      }
+
+      .env-details summary::-webkit-details-marker {
+        display: none;
+      }
+
+      .env-details summary::after {
+        content: '+';
+        font-size: 18px;
+        font-weight: 300;
+        color: #999;
+        transition: transform 0.2s ease;
+      }
+
+      .env-details[open] summary::after {
+        content: '−';
+      }
+
+      .env-details-content {
+        padding-top: 16px;
+      }
+
+      /* ============================================
          Mobile Responsive
          ============================================ */
 
       @media (max-width: 768px) {
         /* Let the page scroll naturally */
         body {
-          overflow: auto;
-          height: auto;
+          overflow: hidden;
+          height: 100vh;
         }
 
         .container {
-          position: relative;
-          height: auto;
-          min-height: 100vh;
-          overflow: visible;
+          position: absolute;
+          height: 100%;
+          overflow: hidden;
         }
 
         .page-header {
-          padding: 14px 20px;
+          padding: 12px 16px;
         }
 
         /* Stack panels vertically */
         .content {
           flex-direction: column;
-          overflow: visible;
+          overflow: hidden;
         }
 
         .left-panel,
@@ -473,70 +511,85 @@
           width: 100%;
         }
 
-        /* Viewport gets a fixed aspect ratio instead of filling height */
+        /* Viewport sticks to top ~40% of screen */
         .left-panel {
-          height: auto;
+          height: 40vh;
+          flex: 0 0 auto;
         }
 
         .viewport-container {
-          aspect-ratio: 4 / 3;
-          flex: none;
+          flex: 1;
+          min-height: 0;
         }
 
         .thumbnail-strip {
           flex: 0 0 auto;
-          padding: 8px;
-          gap: 8px;
+          padding: 6px;
+          gap: 6px;
         }
 
         .thumbnail {
-          width: 56px;
-          height: 56px;
+          width: 48px;
+          height: 48px;
         }
 
-        /* Right panel fits content */
+        /* Right panel scrolls independently below the viewport */
         .right-panel {
-          padding: 24px 20px;
+          flex: 1;
+          padding: 20px 16px;
+          overflow: auto;
         }
 
         /* Scale down product cards and swatches */
         .product-card {
-          width: 60px;
-          height: 60px;
+          width: 56px;
+          height: 56px;
         }
 
         .swatch-option {
-          width: 60px;
-          height: 60px;
+          width: 56px;
+          height: 56px;
         }
 
         .view-3d-button {
           padding: 10px 22px;
           font-size: 12px;
-          bottom: 14px;
+          bottom: 10px;
         }
 
         .upgrade-button {
           width: 100%;
           padding: 14px;
         }
+
+        .options-section {
+          margin-bottom: 16px;
+        }
+
+        .product-details {
+          margin-top: 16px;
+        }
       }
 
       /* Small phones */
       @media (max-width: 400px) {
+        .left-panel {
+          height: 35vh;
+        }
+
         .product-card {
-          width: 52px;
-          height: 52px;
+          width: 48px;
+          height: 48px;
         }
 
         .swatch-option {
-          width: 52px;
-          height: 52px;
+          width: 48px;
+          height: 48px;
         }
 
         .thumbnail {
-          width: 48px;
-          height: 48px;
+          width: 40px;
+          height: 40px;
         }
       }
     </style>
@@ -1105,45 +1158,23 @@
            RIGHT PANEL — Real-time 3D mode (loaded)
            ========================================== -->
       <div class="right-panel" v-if="mode === 'realtime' && !transitioning">
-        <!-- Export Actions -->
-        <div class="add-to-cart">
-          <button type="button" @click="shim.getRender()">
-            Take Render
-          </button>
-          <button type="button" @click="shim.getRender({ x: 1024, y: 1024 })">
-            Take Render 1024x1024
-          </button>
-          <button type="button" @click="shim.getPDF()">
-            Generate PDF
-          </button>
-          <div v-if="shim.ecomConfigurator?.cta?.enabled">
-            <button type="button" @click="shim.getCtaInformation()">
-              {{ shim.ecomConfigurator?.cta?.label }}
-            </button>
-          </div>
-        </div>
-
-        <!-- Product Title -->
-        <div class="header">
-          <h3>{{ shim.product?.title }}</h3>
-        </div>
-
-        <!-- Product Selector -->
-        <div class="product-selector">
-          <label for="product-select">Select Product:</label>
-          <select
-            @change="shim.sendProduct(shim.state.productId)"
-            id="product-select"
-            v-model="shim.state.productId"
-          >
-            <option
-              :key="product.id"
-              :value="product.id"
+        <!-- Product Thumbnails -->
+        <div class="options-section">
+          <p class="option-label">Product:</p>
+          <div class="product-cards">
+            <img
               v-for="product in shim.products"
-            >
-              {{ product.title }}
-            </option>
-          </select>
+              :key="product.id"
+              :src="resolveImageUrl('front', config.prerender.products.find(p => p.label.toLowerCase().trim() === product.title.toLowerCase().trim())?.key)"
+              :alt="product.title"
+              :title="product.title"
+              class="product-card"
+              :class="{ active: shim.state.productId === product.id }"
+              @click="shim.sendProduct(product.id)"
+              @error="onImageError"
+            />
+          </div>
+          <p class="product-card-name">{{ shim.product?.title }}</p>
         </div>
 
         <!-- Product Material Slots -->
@@ -1168,27 +1199,27 @@
           </div>
         </div>
 
-        <!-- Environment Controls -->
-        <div v-if="shim.environmentSlots">
-          <div class="product-selector">
-            <label for="env-select">Select Environment:</label>
-            <select
-              @change="shim.sendEnvironment(shim.state.environmentId)"
-              id="env-select"
-              v-model="shim.state.environmentId"
-            >
-              <option
-                :key="env.id"
-                :value="env.id"
-                v-for="env in shim.environments"
-              >
-                {{ env.title }}
-              </option>
-            </select>
-          </div>
+        <!-- Environment Controls (collapsible) -->
+        <details class="env-details" v-if="shim.environmentSlots">
+          <summary class="option-label">Environment</summary>
 
-          <!-- Environment Material Slots -->
-          <div class="product-details">
+          <div class="env-details-content">
+            <div class="product-selector">
+              <select
+                @change="shim.sendEnvironment(shim.state.environmentId)"
+                id="env-select"
+                v-model="shim.state.environmentId"
+              >
+                <option
+                  :key="env.id"
+                  :value="env.id"
+                  v-for="env in shim.environments"
+                >
+                  {{ env.title }}
+                </option>
+              </select>
+            </div>
+
             <div
               class="options-section"
               v-for="slot in shim.environmentSlots"
@@ -1208,6 +1239,13 @@
               </div>
             </div>
           </div>
+        </details>
+
+        <!-- CTA -->
+        <div v-if="shim.ecomConfigurator?.cta?.enabled" class="add-to-cart" style="margin-top: 24px;">
+          <button type="button" @click="shim.getCtaInformation()">
+            {{ shim.ecomConfigurator?.cta?.label }}
+          </button>
         </div>
       </div>
       </div><!-- .content -->
