@@ -402,24 +402,90 @@
       }
 
       .swatch-option.view-more {
-        background: linear-gradient(135deg, #f8f8f6 0%, #e8e6e1 100%);
+        background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
         display: flex;
         align-items: center;
         justify-content: center;
-        border: 2px dashed #d4d0c8;
-        font-size: 11px;
-        font-weight: 500;
-        color: #666;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        font-size: 10px;
+        font-weight: 600;
+        color: #fff;
         text-align: center;
-        line-height: 1.3;
+        line-height: 1.4;
         padding: 8px;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        position: relative;
+        overflow: hidden;
+        transition: all 0.3s ease;
+      }
+
+      .swatch-option.view-more::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.1);
+        transform: translate(-50%, -50%);
+        transition: width 0.4s ease, height 0.4s ease;
       }
 
       .swatch-option.view-more:hover {
-        border-color: #1a1a1a;
-        border-style: solid;
-        background: linear-gradient(135deg, #e8e6e1 0%, #d4d0c8 100%);
+        border-color: rgba(197, 165, 114, 0.6);
+        background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      }
+
+      .swatch-option.view-more:hover::before {
+        width: 100px;
+        height: 100px;
+      }
+
+      /* ============================================
+         Exit 3D Button (real-time → pre-render)
+         ============================================ */
+
+      .exit-3d-section {
+        margin-bottom: 24px;
+        padding-bottom: 24px;
+        border-bottom: 1px solid #e8e6e1;
+      }
+
+      .exit-3d-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 18px;
+        background-color: transparent;
+        color: #666;
+        border: 1px solid #d4d0c8;
+        border-radius: 6px;
+        font-family: inherit;
+        font-size: 12px;
+        font-weight: 500;
+        letter-spacing: 0.03em;
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+
+      .exit-3d-button::before {
+        content: '←';
+        font-size: 14px;
+        transition: transform 0.2s ease;
+      }
+
+      .exit-3d-button:hover {
+        background-color: #fafaf8;
+        border-color: #999;
         color: #1a1a1a;
+      }
+
+      .exit-3d-button:hover::before {
+        transform: translateX(-2px);
       }
 
       /* ============================================
@@ -573,8 +639,9 @@
         }
 
         .swatch-option.view-more {
-          font-size: 9px;
+          font-size: 8px;
           padding: 4px;
+          letter-spacing: 0.03em;
         }
 
         .view-3d-button {
@@ -586,6 +653,16 @@
         .upgrade-button {
           width: 100%;
           padding: 14px;
+        }
+
+        .exit-3d-button {
+          font-size: 11px;
+          padding: 8px 14px;
+        }
+
+        .exit-3d-section {
+          margin-bottom: 16px;
+          padding-bottom: 16px;
         }
 
         .options-section {
@@ -614,8 +691,9 @@
         }
 
         .swatch-option.view-more {
-          font-size: 8px;
+          font-size: 7px;
           padding: 3px;
+          letter-spacing: 0.02em;
         }
 
         .thumbnail {
@@ -981,6 +1059,23 @@
           },
 
           /**
+           * Exit real-time 3D mode and return to pre-render gallery.
+           * Resets mode state and clears the 3D iframe.
+           */
+          leaveRealTimeMode() {
+            this.mode = 'prerender';
+            this.transitioning = false;
+
+            // Clear the 3D iframe content on next tick
+            this.$nextTick(() => {
+              const embedContainer = document.getElementById('embed3DSource');
+              if (embedContainer) {
+                embedContainer.innerHTML = '';
+              }
+            });
+          },
+
+          /**
            * Match pre-render selections to the 3D configurator by name.
            * Two-phase: first sync product (if different), then materials.
            * Called by the shim.state watcher each time configurator data updates.
@@ -1196,6 +1291,17 @@
            RIGHT PANEL — Real-time 3D mode (loaded)
            ========================================== -->
       <div class="right-panel" v-if="mode === 'realtime' && !transitioning">
+        <!-- Exit 3D Button -->
+        <div class="exit-3d-section">
+          <button
+            type="button"
+            class="exit-3d-button"
+            @click="leaveRealTimeMode"
+          >
+            Back to Gallery
+          </button>
+        </div>
+
         <!-- Product Thumbnails -->
         <div class="options-section">
           <p class="option-label">Product:</p>
