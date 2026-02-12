@@ -1166,9 +1166,6 @@
             this.mode = 'realtime';
 
             this.$nextTick(() => {
-              // Use the current main image as the intro/loading image for visual continuity
-              const introUrl = this.resolveImageUrl(this.activeAngle);
-
               integrateMetabox(
                 this.config.configuratorId,
                 'embed3DSource',
@@ -1176,11 +1173,7 @@
                   this.shim.ready(api);
                   // Sync happens automatically when shim.state populates (see watcher)
                 },
-                {
-                  standalone: true,
-                  introImage: introUrl,
-                  loadingImage: introUrl,
-                },
+                { standalone: true },
               );
             });
           },
@@ -1296,7 +1289,7 @@
 
           <!-- Pre-render image overlay (fades out when 3D is ready) -->
           <Transition name="fade">
-            <div class="prerender-overlay" v-if="mode === 'prerender' || transitioning">
+            <div class="prerender-overlay" v-if="mode === 'prerender' || transitioning || (mode === 'realtime' && !shim.viewportReady)">
               <img
                 :src="mainImageUrl"
                 :alt="activeAngle + ' view'"
@@ -1306,7 +1299,7 @@
               <button
                 type="button"
                 class="view-3d-button"
-                v-if="transitioning"
+                v-if="mode === 'realtime' && !shim.viewportReady"
                 disabled
               >
                 <span class="spinner"></span>
