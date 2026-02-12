@@ -1,0 +1,2648 @@
+{
+  "generated": "2026-02-12T00:30:15.059Z",
+  "configuratorId": "54c0a58e-df14-4d5c-9a49-0989bc6aa80b",
+  "environmentId": "6f25b12e-513a-4307-a676-b9514c42a1ce",
+  "totalRenders": 60,
+  "renders": [
+    {
+      "filename": "jagger-dining-side-chair_arh-cloth-cary-linen_brass-jagger_ebony-kensington-jagger_front.webp",
+      "productId": "08d2fbdb-9b72-47e9-adfd-4bb697b1672c",
+      "productName": "Jagger Dining Side Chair",
+      "materials": [
+        {
+          "slotId": "fabric",
+          "materialId": "4acc5f88-5378-4521-9b39-0cf8d958c3a3",
+          "materialName": "Arh Cloth Cary Linen"
+        },
+        {
+          "slotId": "metal",
+          "materialId": "3f39755b-cd58-4bb0-b711-08c7798c14b2",
+          "materialName": "Brass Jagger"
+        },
+        {
+          "slotId": "wood",
+          "materialId": "f0859b2b-e9cf-4a8d-950a-8705576eba56",
+          "materialName": "Ebony Kensington Jagger"
+        }
+      ],
+      "angle": {
+        "name": "front",
+        "camera": {
+          "mode": "orbit",
+          "fov": 49,
+          "position": {
+            "x": 3,
+            "y": 202,
+            "z": 77
+          },
+          "rotation": {
+            "horizontal": -90,
+            "vertical": -11
+          }
+        },
+        "isProductSpecific": false
+      },
+      "format": "image/webp",
+      "resolution": {
+        "width": 3600,
+        "height": 2400
+      }
+    },
+    {
+      "filename": "jagger-dining-side-chair_arh-cloth-downy-ebony_brass-jagger_ebony-kensington-jagger_front.webp",
+      "productId": "08d2fbdb-9b72-47e9-adfd-4bb697b1672c",
+      "productName": "Jagger Dining Side Chair",
+      "materials": [
+        {
+          "slotId": "fabric",
+          "materialId": "ab11aca3-4336-4383-a674-4873da2207fa",
+          "materialName": "Arh Cloth Downy Ebony"
+        },
+        {
+          "slotId": "metal",
+          "materialId": "3f39755b-cd58-4bb0-b711-08c7798c14b2",
+          "materialName": "Brass Jagger"
+        },
+        {
+          "slotId": "wood",
+          "materialId": "f0859b2b-e9cf-4a8d-950a-8705576eba56",
+          "materialName": "Ebony Kensington Jagger"
+        }
+      ],
+      "angle": {
+        "name": "front",
+        "camera": {
+          "mode": "orbit",
+          "fov": 49,
+          "position": {
+            "x": 3,
+            "y": 202,
+            "z": 77
+          },
+          "rotation": {
+            "horizontal": -90,
+            "vertical": -11
+          }
+        },
+        "isProductSpecific": false
+      },
+      "format": "image/webp",
+      "resolution": {
+        "width": 3600,
+        "height": 2400
+      }
+    },
+    {
+      "filename": "jagger-dining-side-chair_arh-leather-buckeye_brass-jagger_ebony-kensington-jagger_front.webp",
+      "productId": "08d2fbdb-9b72-47e9-adfd-4bb697b1672c",
+      "productName": "Jagger Dining Side Chair",
+      "materials": [
+        {
+          "slotId": "fabric",
+          "materialId": "14b5adf4-f477-4100-89ca-c20ebcde9176",
+          "materialName": "Arh Leather Buckeye"
+        },
+        {
+          "slotId": "metal",
+          "materialId": "3f39755b-cd58-4bb0-b711-08c7798c14b2",
+          "materialName": "Brass Jagger"
+        },
+        {
+          "slotId": "wood",
+          "materialId": "f0859b2b-e9cf-4a8d-950a-8705576eba56",
+          "materialName": "Ebony Kensington Jagger"
+        }
+      ],
+      "angle": {
+        "name": "front",
+        "camera": {
+          "mode": "orbit",
+          "fov": 49,
+          "position": {
+            "x": 3,
+            "y": 202,
+            "z": 77
+          },
+          "rotation": {
+            "horizontal": -90,
+            "vertical": -11
+          }
+        },
+        "isProductSpecific": false
+      },
+      "format": "image/webp",
+      "resolution": {
+        "width": 3600,
+        "height": 2400
+      }
+    },
+    {
+      "filename": "jagger-dining-side-chair_arh-leather-carbon_brass-jagger_ebony-kensington-jagger_front.webp",
+      "productId": "08d2fbdb-9b72-47e9-adfd-4bb697b1672c",
+      "productName": "Jagger Dining Side Chair",
+      "materials": [
+        {
+          "slotId": "fabric",
+          "materialId": "3f97469c-6e32-497a-b2be-a7e7005a2e7d",
+          "materialName": "Arh Leather Carbon"
+        },
+        {
+          "slotId": "metal",
+          "materialId": "3f39755b-cd58-4bb0-b711-08c7798c14b2",
+          "materialName": "Brass Jagger"
+        },
+        {
+          "slotId": "wood",
+          "materialId": "f0859b2b-e9cf-4a8d-950a-8705576eba56",
+          "materialName": "Ebony Kensington Jagger"
+        }
+      ],
+      "angle": {
+        "name": "front",
+        "camera": {
+          "mode": "orbit",
+          "fov": 49,
+          "position": {
+            "x": 3,
+            "y": 202,
+            "z": 77
+          },
+          "rotation": {
+            "horizontal": -90,
+            "vertical": -11
+          }
+        },
+        "isProductSpecific": false
+      },
+      "format": "image/webp",
+      "resolution": {
+        "width": 3600,
+        "height": 2400
+      }
+    },
+    {
+      "filename": "arhaus-jagger-dining-bench_arh-cloth-cary-linen_brass-jagger_ebony-kensington-jagger_front.webp",
+      "productId": "2a4837fb-73be-4743-8228-32545b1939d6",
+      "productName": "Arhaus Jagger Dining Bench",
+      "materials": [
+        {
+          "slotId": "fabric",
+          "materialId": "4acc5f88-5378-4521-9b39-0cf8d958c3a3",
+          "materialName": "Arh Cloth Cary Linen"
+        },
+        {
+          "slotId": "metal",
+          "materialId": "3f39755b-cd58-4bb0-b711-08c7798c14b2",
+          "materialName": "Brass Jagger"
+        },
+        {
+          "slotId": "wood",
+          "materialId": "f0859b2b-e9cf-4a8d-950a-8705576eba56",
+          "materialName": "Ebony Kensington Jagger"
+        }
+      ],
+      "angle": {
+        "name": "front",
+        "camera": {
+          "mode": "orbit",
+          "fov": 49,
+          "position": {
+            "x": 3,
+            "y": 202,
+            "z": 77
+          },
+          "rotation": {
+            "horizontal": -90,
+            "vertical": -11
+          }
+        },
+        "isProductSpecific": false
+      },
+      "format": "image/webp",
+      "resolution": {
+        "width": 3600,
+        "height": 2400
+      }
+    },
+    {
+      "filename": "arhaus-jagger-dining-bench_arh-cloth-downy-ebony_brass-jagger_ebony-kensington-jagger_front.webp",
+      "productId": "2a4837fb-73be-4743-8228-32545b1939d6",
+      "productName": "Arhaus Jagger Dining Bench",
+      "materials": [
+        {
+          "slotId": "fabric",
+          "materialId": "ab11aca3-4336-4383-a674-4873da2207fa",
+          "materialName": "Arh Cloth Downy Ebony"
+        },
+        {
+          "slotId": "metal",
+          "materialId": "3f39755b-cd58-4bb0-b711-08c7798c14b2",
+          "materialName": "Brass Jagger"
+        },
+        {
+          "slotId": "wood",
+          "materialId": "f0859b2b-e9cf-4a8d-950a-8705576eba56",
+          "materialName": "Ebony Kensington Jagger"
+        }
+      ],
+      "angle": {
+        "name": "front",
+        "camera": {
+          "mode": "orbit",
+          "fov": 49,
+          "position": {
+            "x": 3,
+            "y": 202,
+            "z": 77
+          },
+          "rotation": {
+            "horizontal": -90,
+            "vertical": -11
+          }
+        },
+        "isProductSpecific": false
+      },
+      "format": "image/webp",
+      "resolution": {
+        "width": 3600,
+        "height": 2400
+      }
+    },
+    {
+      "filename": "arhaus-jagger-dining-bench_arh-leather-buckeye_brass-jagger_ebony-kensington-jagger_front.webp",
+      "productId": "2a4837fb-73be-4743-8228-32545b1939d6",
+      "productName": "Arhaus Jagger Dining Bench",
+      "materials": [
+        {
+          "slotId": "fabric",
+          "materialId": "14b5adf4-f477-4100-89ca-c20ebcde9176",
+          "materialName": "Arh Leather Buckeye"
+        },
+        {
+          "slotId": "metal",
+          "materialId": "3f39755b-cd58-4bb0-b711-08c7798c14b2",
+          "materialName": "Brass Jagger"
+        },
+        {
+          "slotId": "wood",
+          "materialId": "f0859b2b-e9cf-4a8d-950a-8705576eba56",
+          "materialName": "Ebony Kensington Jagger"
+        }
+      ],
+      "angle": {
+        "name": "front",
+        "camera": {
+          "mode": "orbit",
+          "fov": 49,
+          "position": {
+            "x": 3,
+            "y": 202,
+            "z": 77
+          },
+          "rotation": {
+            "horizontal": -90,
+            "vertical": -11
+          }
+        },
+        "isProductSpecific": false
+      },
+      "format": "image/webp",
+      "resolution": {
+        "width": 3600,
+        "height": 2400
+      }
+    },
+    {
+      "filename": "arhaus-jagger-dining-bench_arh-leather-carbon_brass-jagger_ebony-kensington-jagger_front.webp",
+      "productId": "2a4837fb-73be-4743-8228-32545b1939d6",
+      "productName": "Arhaus Jagger Dining Bench",
+      "materials": [
+        {
+          "slotId": "fabric",
+          "materialId": "3f97469c-6e32-497a-b2be-a7e7005a2e7d",
+          "materialName": "Arh Leather Carbon"
+        },
+        {
+          "slotId": "metal",
+          "materialId": "3f39755b-cd58-4bb0-b711-08c7798c14b2",
+          "materialName": "Brass Jagger"
+        },
+        {
+          "slotId": "wood",
+          "materialId": "f0859b2b-e9cf-4a8d-950a-8705576eba56",
+          "materialName": "Ebony Kensington Jagger"
+        }
+      ],
+      "angle": {
+        "name": "front",
+        "camera": {
+          "mode": "orbit",
+          "fov": 49,
+          "position": {
+            "x": 3,
+            "y": 202,
+            "z": 77
+          },
+          "rotation": {
+            "horizontal": -90,
+            "vertical": -11
+          }
+        },
+        "isProductSpecific": false
+      },
+      "format": "image/webp",
+      "resolution": {
+        "width": 3600,
+        "height": 2400
+      }
+    },
+    {
+      "filename": "arhaus-jagger-chair_arh-cloth-cary-linen_brass-jagger_ebony-kensington-jagger_front.webp",
+      "productId": "84183632-1de0-47ee-8e87-5b1ee57292aa",
+      "productName": "Arhaus Jagger Chair",
+      "materials": [
+        {
+          "slotId": "fabric",
+          "materialId": "4acc5f88-5378-4521-9b39-0cf8d958c3a3",
+          "materialName": "Arh Cloth Cary Linen"
+        },
+        {
+          "slotId": "metal",
+          "materialId": "3f39755b-cd58-4bb0-b711-08c7798c14b2",
+          "materialName": "Brass Jagger"
+        },
+        {
+          "slotId": "wood",
+          "materialId": "f0859b2b-e9cf-4a8d-950a-8705576eba56",
+          "materialName": "Ebony Kensington Jagger"
+        }
+      ],
+      "angle": {
+        "name": "front",
+        "camera": {
+          "mode": "orbit",
+          "fov": 49,
+          "position": {
+            "x": 3,
+            "y": 202,
+            "z": 77
+          },
+          "rotation": {
+            "horizontal": -90,
+            "vertical": -11
+          }
+        },
+        "isProductSpecific": false
+      },
+      "format": "image/webp",
+      "resolution": {
+        "width": 3600,
+        "height": 2400
+      }
+    },
+    {
+      "filename": "arhaus-jagger-chair_arh-cloth-downy-ebony_brass-jagger_ebony-kensington-jagger_front.webp",
+      "productId": "84183632-1de0-47ee-8e87-5b1ee57292aa",
+      "productName": "Arhaus Jagger Chair",
+      "materials": [
+        {
+          "slotId": "fabric",
+          "materialId": "ab11aca3-4336-4383-a674-4873da2207fa",
+          "materialName": "Arh Cloth Downy Ebony"
+        },
+        {
+          "slotId": "metal",
+          "materialId": "3f39755b-cd58-4bb0-b711-08c7798c14b2",
+          "materialName": "Brass Jagger"
+        },
+        {
+          "slotId": "wood",
+          "materialId": "f0859b2b-e9cf-4a8d-950a-8705576eba56",
+          "materialName": "Ebony Kensington Jagger"
+        }
+      ],
+      "angle": {
+        "name": "front",
+        "camera": {
+          "mode": "orbit",
+          "fov": 49,
+          "position": {
+            "x": 3,
+            "y": 202,
+            "z": 77
+          },
+          "rotation": {
+            "horizontal": -90,
+            "vertical": -11
+          }
+        },
+        "isProductSpecific": false
+      },
+      "format": "image/webp",
+      "resolution": {
+        "width": 3600,
+        "height": 2400
+      }
+    },
+    {
+      "filename": "arhaus-jagger-chair_arh-leather-buckeye_brass-jagger_ebony-kensington-jagger_front.webp",
+      "productId": "84183632-1de0-47ee-8e87-5b1ee57292aa",
+      "productName": "Arhaus Jagger Chair",
+      "materials": [
+        {
+          "slotId": "fabric",
+          "materialId": "14b5adf4-f477-4100-89ca-c20ebcde9176",
+          "materialName": "Arh Leather Buckeye"
+        },
+        {
+          "slotId": "metal",
+          "materialId": "3f39755b-cd58-4bb0-b711-08c7798c14b2",
+          "materialName": "Brass Jagger"
+        },
+        {
+          "slotId": "wood",
+          "materialId": "f0859b2b-e9cf-4a8d-950a-8705576eba56",
+          "materialName": "Ebony Kensington Jagger"
+        }
+      ],
+      "angle": {
+        "name": "front",
+        "camera": {
+          "mode": "orbit",
+          "fov": 49,
+          "position": {
+            "x": 3,
+            "y": 202,
+            "z": 77
+          },
+          "rotation": {
+            "horizontal": -90,
+            "vertical": -11
+          }
+        },
+        "isProductSpecific": false
+      },
+      "format": "image/webp",
+      "resolution": {
+        "width": 3600,
+        "height": 2400
+      }
+    },
+    {
+      "filename": "arhaus-jagger-chair_arh-leather-carbon_brass-jagger_ebony-kensington-jagger_front.webp",
+      "productId": "84183632-1de0-47ee-8e87-5b1ee57292aa",
+      "productName": "Arhaus Jagger Chair",
+      "materials": [
+        {
+          "slotId": "fabric",
+          "materialId": "3f97469c-6e32-497a-b2be-a7e7005a2e7d",
+          "materialName": "Arh Leather Carbon"
+        },
+        {
+          "slotId": "metal",
+          "materialId": "3f39755b-cd58-4bb0-b711-08c7798c14b2",
+          "materialName": "Brass Jagger"
+        },
+        {
+          "slotId": "wood",
+          "materialId": "f0859b2b-e9cf-4a8d-950a-8705576eba56",
+          "materialName": "Ebony Kensington Jagger"
+        }
+      ],
+      "angle": {
+        "name": "front",
+        "camera": {
+          "mode": "orbit",
+          "fov": 49,
+          "position": {
+            "x": 3,
+            "y": 202,
+            "z": 77
+          },
+          "rotation": {
+            "horizontal": -90,
+            "vertical": -11
+          }
+        },
+        "isProductSpecific": false
+      },
+      "format": "image/webp",
+      "resolution": {
+        "width": 3600,
+        "height": 2400
+      }
+    },
+    {
+      "filename": "jagger-barstool_arh-cloth-cary-linen_brass-jagger_ebony-kensington-jagger_front.webp",
+      "productId": "8b5754da-70d0-415c-b414-a8212e74fbe1",
+      "productName": "Jagger Barstool",
+      "materials": [
+        {
+          "slotId": "fabric",
+          "materialId": "4acc5f88-5378-4521-9b39-0cf8d958c3a3",
+          "materialName": "Arh Cloth Cary Linen"
+        },
+        {
+          "slotId": "metal",
+          "materialId": "3f39755b-cd58-4bb0-b711-08c7798c14b2",
+          "materialName": "Brass Jagger"
+        },
+        {
+          "slotId": "wood",
+          "materialId": "f0859b2b-e9cf-4a8d-950a-8705576eba56",
+          "materialName": "Ebony Kensington Jagger"
+        }
+      ],
+      "angle": {
+        "name": "front",
+        "camera": {
+          "mode": "orbit",
+          "fov": 49,
+          "position": {
+            "x": 3,
+            "y": 202,
+            "z": 77
+          },
+          "rotation": {
+            "horizontal": -90,
+            "vertical": -11
+          }
+        },
+        "isProductSpecific": false
+      },
+      "format": "image/webp",
+      "resolution": {
+        "width": 3600,
+        "height": 2400
+      }
+    },
+    {
+      "filename": "jagger-barstool_arh-cloth-downy-ebony_brass-jagger_ebony-kensington-jagger_front.webp",
+      "productId": "8b5754da-70d0-415c-b414-a8212e74fbe1",
+      "productName": "Jagger Barstool",
+      "materials": [
+        {
+          "slotId": "fabric",
+          "materialId": "ab11aca3-4336-4383-a674-4873da2207fa",
+          "materialName": "Arh Cloth Downy Ebony"
+        },
+        {
+          "slotId": "metal",
+          "materialId": "3f39755b-cd58-4bb0-b711-08c7798c14b2",
+          "materialName": "Brass Jagger"
+        },
+        {
+          "slotId": "wood",
+          "materialId": "f0859b2b-e9cf-4a8d-950a-8705576eba56",
+          "materialName": "Ebony Kensington Jagger"
+        }
+      ],
+      "angle": {
+        "name": "front",
+        "camera": {
+          "mode": "orbit",
+          "fov": 49,
+          "position": {
+            "x": 3,
+            "y": 202,
+            "z": 77
+          },
+          "rotation": {
+            "horizontal": -90,
+            "vertical": -11
+          }
+        },
+        "isProductSpecific": false
+      },
+      "format": "image/webp",
+      "resolution": {
+        "width": 3600,
+        "height": 2400
+      }
+    },
+    {
+      "filename": "jagger-barstool_arh-leather-buckeye_brass-jagger_ebony-kensington-jagger_front.webp",
+      "productId": "8b5754da-70d0-415c-b414-a8212e74fbe1",
+      "productName": "Jagger Barstool",
+      "materials": [
+        {
+          "slotId": "fabric",
+          "materialId": "14b5adf4-f477-4100-89ca-c20ebcde9176",
+          "materialName": "Arh Leather Buckeye"
+        },
+        {
+          "slotId": "metal",
+          "materialId": "3f39755b-cd58-4bb0-b711-08c7798c14b2",
+          "materialName": "Brass Jagger"
+        },
+        {
+          "slotId": "wood",
+          "materialId": "f0859b2b-e9cf-4a8d-950a-8705576eba56",
+          "materialName": "Ebony Kensington Jagger"
+        }
+      ],
+      "angle": {
+        "name": "front",
+        "camera": {
+          "mode": "orbit",
+          "fov": 49,
+          "position": {
+            "x": 3,
+            "y": 202,
+            "z": 77
+          },
+          "rotation": {
+            "horizontal": -90,
+            "vertical": -11
+          }
+        },
+        "isProductSpecific": false
+      },
+      "format": "image/webp",
+      "resolution": {
+        "width": 3600,
+        "height": 2400
+      }
+    },
+    {
+      "filename": "jagger-barstool_arh-leather-carbon_brass-jagger_ebony-kensington-jagger_front.webp",
+      "productId": "8b5754da-70d0-415c-b414-a8212e74fbe1",
+      "productName": "Jagger Barstool",
+      "materials": [
+        {
+          "slotId": "fabric",
+          "materialId": "3f97469c-6e32-497a-b2be-a7e7005a2e7d",
+          "materialName": "Arh Leather Carbon"
+        },
+        {
+          "slotId": "metal",
+          "materialId": "3f39755b-cd58-4bb0-b711-08c7798c14b2",
+          "materialName": "Brass Jagger"
+        },
+        {
+          "slotId": "wood",
+          "materialId": "f0859b2b-e9cf-4a8d-950a-8705576eba56",
+          "materialName": "Ebony Kensington Jagger"
+        }
+      ],
+      "angle": {
+        "name": "front",
+        "camera": {
+          "mode": "orbit",
+          "fov": 49,
+          "position": {
+            "x": 3,
+            "y": 202,
+            "z": 77
+          },
+          "rotation": {
+            "horizontal": -90,
+            "vertical": -11
+          }
+        },
+        "isProductSpecific": false
+      },
+      "format": "image/webp",
+      "resolution": {
+        "width": 3600,
+        "height": 2400
+      }
+    },
+    {
+      "filename": "jagger-dining-arm-chair_arh-cloth-cary-linen_brass-jagger_ebony-kensington-jagger_front.webp",
+      "productId": "9a549b46-ee85-43e3-94bd-2c9b2f65022f",
+      "productName": "Jagger Dining Arm Chair",
+      "materials": [
+        {
+          "slotId": "fabric",
+          "materialId": "4acc5f88-5378-4521-9b39-0cf8d958c3a3",
+          "materialName": "Arh Cloth Cary Linen"
+        },
+        {
+          "slotId": "metal",
+          "materialId": "3f39755b-cd58-4bb0-b711-08c7798c14b2",
+          "materialName": "Brass Jagger"
+        },
+        {
+          "slotId": "wood",
+          "materialId": "f0859b2b-e9cf-4a8d-950a-8705576eba56",
+          "materialName": "Ebony Kensington Jagger"
+        }
+      ],
+      "angle": {
+        "name": "front",
+        "camera": {
+          "mode": "orbit",
+          "fov": 49,
+          "position": {
+            "x": 3,
+            "y": 202,
+            "z": 77
+          },
+          "rotation": {
+            "horizontal": -90,
+            "vertical": -11
+          }
+        },
+        "isProductSpecific": false
+      },
+      "format": "image/webp",
+      "resolution": {
+        "width": 3600,
+        "height": 2400
+      }
+    },
+    {
+      "filename": "jagger-dining-arm-chair_arh-cloth-downy-ebony_brass-jagger_ebony-kensington-jagger_front.webp",
+      "productId": "9a549b46-ee85-43e3-94bd-2c9b2f65022f",
+      "productName": "Jagger Dining Arm Chair",
+      "materials": [
+        {
+          "slotId": "fabric",
+          "materialId": "ab11aca3-4336-4383-a674-4873da2207fa",
+          "materialName": "Arh Cloth Downy Ebony"
+        },
+        {
+          "slotId": "metal",
+          "materialId": "3f39755b-cd58-4bb0-b711-08c7798c14b2",
+          "materialName": "Brass Jagger"
+        },
+        {
+          "slotId": "wood",
+          "materialId": "f0859b2b-e9cf-4a8d-950a-8705576eba56",
+          "materialName": "Ebony Kensington Jagger"
+        }
+      ],
+      "angle": {
+        "name": "front",
+        "camera": {
+          "mode": "orbit",
+          "fov": 49,
+          "position": {
+            "x": 3,
+            "y": 202,
+            "z": 77
+          },
+          "rotation": {
+            "horizontal": -90,
+            "vertical": -11
+          }
+        },
+        "isProductSpecific": false
+      },
+      "format": "image/webp",
+      "resolution": {
+        "width": 3600,
+        "height": 2400
+      }
+    },
+    {
+      "filename": "jagger-dining-arm-chair_arh-leather-buckeye_brass-jagger_ebony-kensington-jagger_front.webp",
+      "productId": "9a549b46-ee85-43e3-94bd-2c9b2f65022f",
+      "productName": "Jagger Dining Arm Chair",
+      "materials": [
+        {
+          "slotId": "fabric",
+          "materialId": "14b5adf4-f477-4100-89ca-c20ebcde9176",
+          "materialName": "Arh Leather Buckeye"
+        },
+        {
+          "slotId": "metal",
+          "materialId": "3f39755b-cd58-4bb0-b711-08c7798c14b2",
+          "materialName": "Brass Jagger"
+        },
+        {
+          "slotId": "wood",
+          "materialId": "f0859b2b-e9cf-4a8d-950a-8705576eba56",
+          "materialName": "Ebony Kensington Jagger"
+        }
+      ],
+      "angle": {
+        "name": "front",
+        "camera": {
+          "mode": "orbit",
+          "fov": 49,
+          "position": {
+            "x": 3,
+            "y": 202,
+            "z": 77
+          },
+          "rotation": {
+            "horizontal": -90,
+            "vertical": -11
+          }
+        },
+        "isProductSpecific": false
+      },
+      "format": "image/webp",
+      "resolution": {
+        "width": 3600,
+        "height": 2400
+      }
+    },
+    {
+      "filename": "jagger-dining-arm-chair_arh-leather-carbon_brass-jagger_ebony-kensington-jagger_front.webp",
+      "productId": "9a549b46-ee85-43e3-94bd-2c9b2f65022f",
+      "productName": "Jagger Dining Arm Chair",
+      "materials": [
+        {
+          "slotId": "fabric",
+          "materialId": "3f97469c-6e32-497a-b2be-a7e7005a2e7d",
+          "materialName": "Arh Leather Carbon"
+        },
+        {
+          "slotId": "metal",
+          "materialId": "3f39755b-cd58-4bb0-b711-08c7798c14b2",
+          "materialName": "Brass Jagger"
+        },
+        {
+          "slotId": "wood",
+          "materialId": "f0859b2b-e9cf-4a8d-950a-8705576eba56",
+          "materialName": "Ebony Kensington Jagger"
+        }
+      ],
+      "angle": {
+        "name": "front",
+        "camera": {
+          "mode": "orbit",
+          "fov": 49,
+          "position": {
+            "x": 3,
+            "y": 202,
+            "z": 77
+          },
+          "rotation": {
+            "horizontal": -90,
+            "vertical": -11
+          }
+        },
+        "isProductSpecific": false
+      },
+      "format": "image/webp",
+      "resolution": {
+        "width": 3600,
+        "height": 2400
+      }
+    },
+    {
+      "filename": "jagger-dining-side-chair_arh-cloth-cary-linen_brass-jagger_ebony-kensington-jagger_angle.webp",
+      "productId": "08d2fbdb-9b72-47e9-adfd-4bb697b1672c",
+      "productName": "Jagger Dining Side Chair",
+      "materials": [
+        {
+          "slotId": "fabric",
+          "materialId": "4acc5f88-5378-4521-9b39-0cf8d958c3a3",
+          "materialName": "Arh Cloth Cary Linen"
+        },
+        {
+          "slotId": "metal",
+          "materialId": "3f39755b-cd58-4bb0-b711-08c7798c14b2",
+          "materialName": "Brass Jagger"
+        },
+        {
+          "slotId": "wood",
+          "materialId": "f0859b2b-e9cf-4a8d-950a-8705576eba56",
+          "materialName": "Ebony Kensington Jagger"
+        }
+      ],
+      "angle": {
+        "name": "angle",
+        "camera": {
+          "mode": "orbit",
+          "fov": 49,
+          "position": {
+            "x": -110,
+            "y": 168,
+            "z": 74
+          },
+          "rotation": {
+            "horizontal": -56,
+            "vertical": -10
+          }
+        },
+        "isProductSpecific": false
+      },
+      "format": "image/webp",
+      "resolution": {
+        "width": 3600,
+        "height": 2400
+      }
+    },
+    {
+      "filename": "jagger-dining-side-chair_arh-cloth-downy-ebony_brass-jagger_ebony-kensington-jagger_angle.webp",
+      "productId": "08d2fbdb-9b72-47e9-adfd-4bb697b1672c",
+      "productName": "Jagger Dining Side Chair",
+      "materials": [
+        {
+          "slotId": "fabric",
+          "materialId": "ab11aca3-4336-4383-a674-4873da2207fa",
+          "materialName": "Arh Cloth Downy Ebony"
+        },
+        {
+          "slotId": "metal",
+          "materialId": "3f39755b-cd58-4bb0-b711-08c7798c14b2",
+          "materialName": "Brass Jagger"
+        },
+        {
+          "slotId": "wood",
+          "materialId": "f0859b2b-e9cf-4a8d-950a-8705576eba56",
+          "materialName": "Ebony Kensington Jagger"
+        }
+      ],
+      "angle": {
+        "name": "angle",
+        "camera": {
+          "mode": "orbit",
+          "fov": 49,
+          "position": {
+            "x": -110,
+            "y": 168,
+            "z": 74
+          },
+          "rotation": {
+            "horizontal": -56,
+            "vertical": -10
+          }
+        },
+        "isProductSpecific": false
+      },
+      "format": "image/webp",
+      "resolution": {
+        "width": 3600,
+        "height": 2400
+      }
+    },
+    {
+      "filename": "jagger-dining-side-chair_arh-leather-buckeye_brass-jagger_ebony-kensington-jagger_angle.webp",
+      "productId": "08d2fbdb-9b72-47e9-adfd-4bb697b1672c",
+      "productName": "Jagger Dining Side Chair",
+      "materials": [
+        {
+          "slotId": "fabric",
+          "materialId": "14b5adf4-f477-4100-89ca-c20ebcde9176",
+          "materialName": "Arh Leather Buckeye"
+        },
+        {
+          "slotId": "metal",
+          "materialId": "3f39755b-cd58-4bb0-b711-08c7798c14b2",
+          "materialName": "Brass Jagger"
+        },
+        {
+          "slotId": "wood",
+          "materialId": "f0859b2b-e9cf-4a8d-950a-8705576eba56",
+          "materialName": "Ebony Kensington Jagger"
+        }
+      ],
+      "angle": {
+        "name": "angle",
+        "camera": {
+          "mode": "orbit",
+          "fov": 49,
+          "position": {
+            "x": -110,
+            "y": 168,
+            "z": 74
+          },
+          "rotation": {
+            "horizontal": -56,
+            "vertical": -10
+          }
+        },
+        "isProductSpecific": false
+      },
+      "format": "image/webp",
+      "resolution": {
+        "width": 3600,
+        "height": 2400
+      }
+    },
+    {
+      "filename": "jagger-dining-side-chair_arh-leather-carbon_brass-jagger_ebony-kensington-jagger_angle.webp",
+      "productId": "08d2fbdb-9b72-47e9-adfd-4bb697b1672c",
+      "productName": "Jagger Dining Side Chair",
+      "materials": [
+        {
+          "slotId": "fabric",
+          "materialId": "3f97469c-6e32-497a-b2be-a7e7005a2e7d",
+          "materialName": "Arh Leather Carbon"
+        },
+        {
+          "slotId": "metal",
+          "materialId": "3f39755b-cd58-4bb0-b711-08c7798c14b2",
+          "materialName": "Brass Jagger"
+        },
+        {
+          "slotId": "wood",
+          "materialId": "f0859b2b-e9cf-4a8d-950a-8705576eba56",
+          "materialName": "Ebony Kensington Jagger"
+        }
+      ],
+      "angle": {
+        "name": "angle",
+        "camera": {
+          "mode": "orbit",
+          "fov": 49,
+          "position": {
+            "x": -110,
+            "y": 168,
+            "z": 74
+          },
+          "rotation": {
+            "horizontal": -56,
+            "vertical": -10
+          }
+        },
+        "isProductSpecific": false
+      },
+      "format": "image/webp",
+      "resolution": {
+        "width": 3600,
+        "height": 2400
+      }
+    },
+    {
+      "filename": "arhaus-jagger-dining-bench_arh-cloth-cary-linen_brass-jagger_ebony-kensington-jagger_angle.webp",
+      "productId": "2a4837fb-73be-4743-8228-32545b1939d6",
+      "productName": "Arhaus Jagger Dining Bench",
+      "materials": [
+        {
+          "slotId": "fabric",
+          "materialId": "4acc5f88-5378-4521-9b39-0cf8d958c3a3",
+          "materialName": "Arh Cloth Cary Linen"
+        },
+        {
+          "slotId": "metal",
+          "materialId": "3f39755b-cd58-4bb0-b711-08c7798c14b2",
+          "materialName": "Brass Jagger"
+        },
+        {
+          "slotId": "wood",
+          "materialId": "f0859b2b-e9cf-4a8d-950a-8705576eba56",
+          "materialName": "Ebony Kensington Jagger"
+        }
+      ],
+      "angle": {
+        "name": "angle",
+        "camera": {
+          "mode": "orbit",
+          "fov": 49,
+          "position": {
+            "x": -110,
+            "y": 168,
+            "z": 74
+          },
+          "rotation": {
+            "horizontal": -56,
+            "vertical": -10
+          }
+        },
+        "isProductSpecific": false
+      },
+      "format": "image/webp",
+      "resolution": {
+        "width": 3600,
+        "height": 2400
+      }
+    },
+    {
+      "filename": "arhaus-jagger-dining-bench_arh-cloth-downy-ebony_brass-jagger_ebony-kensington-jagger_angle.webp",
+      "productId": "2a4837fb-73be-4743-8228-32545b1939d6",
+      "productName": "Arhaus Jagger Dining Bench",
+      "materials": [
+        {
+          "slotId": "fabric",
+          "materialId": "ab11aca3-4336-4383-a674-4873da2207fa",
+          "materialName": "Arh Cloth Downy Ebony"
+        },
+        {
+          "slotId": "metal",
+          "materialId": "3f39755b-cd58-4bb0-b711-08c7798c14b2",
+          "materialName": "Brass Jagger"
+        },
+        {
+          "slotId": "wood",
+          "materialId": "f0859b2b-e9cf-4a8d-950a-8705576eba56",
+          "materialName": "Ebony Kensington Jagger"
+        }
+      ],
+      "angle": {
+        "name": "angle",
+        "camera": {
+          "mode": "orbit",
+          "fov": 49,
+          "position": {
+            "x": -110,
+            "y": 168,
+            "z": 74
+          },
+          "rotation": {
+            "horizontal": -56,
+            "vertical": -10
+          }
+        },
+        "isProductSpecific": false
+      },
+      "format": "image/webp",
+      "resolution": {
+        "width": 3600,
+        "height": 2400
+      }
+    },
+    {
+      "filename": "arhaus-jagger-dining-bench_arh-leather-buckeye_brass-jagger_ebony-kensington-jagger_angle.webp",
+      "productId": "2a4837fb-73be-4743-8228-32545b1939d6",
+      "productName": "Arhaus Jagger Dining Bench",
+      "materials": [
+        {
+          "slotId": "fabric",
+          "materialId": "14b5adf4-f477-4100-89ca-c20ebcde9176",
+          "materialName": "Arh Leather Buckeye"
+        },
+        {
+          "slotId": "metal",
+          "materialId": "3f39755b-cd58-4bb0-b711-08c7798c14b2",
+          "materialName": "Brass Jagger"
+        },
+        {
+          "slotId": "wood",
+          "materialId": "f0859b2b-e9cf-4a8d-950a-8705576eba56",
+          "materialName": "Ebony Kensington Jagger"
+        }
+      ],
+      "angle": {
+        "name": "angle",
+        "camera": {
+          "mode": "orbit",
+          "fov": 49,
+          "position": {
+            "x": -110,
+            "y": 168,
+            "z": 74
+          },
+          "rotation": {
+            "horizontal": -56,
+            "vertical": -10
+          }
+        },
+        "isProductSpecific": false
+      },
+      "format": "image/webp",
+      "resolution": {
+        "width": 3600,
+        "height": 2400
+      }
+    },
+    {
+      "filename": "arhaus-jagger-dining-bench_arh-leather-carbon_brass-jagger_ebony-kensington-jagger_angle.webp",
+      "productId": "2a4837fb-73be-4743-8228-32545b1939d6",
+      "productName": "Arhaus Jagger Dining Bench",
+      "materials": [
+        {
+          "slotId": "fabric",
+          "materialId": "3f97469c-6e32-497a-b2be-a7e7005a2e7d",
+          "materialName": "Arh Leather Carbon"
+        },
+        {
+          "slotId": "metal",
+          "materialId": "3f39755b-cd58-4bb0-b711-08c7798c14b2",
+          "materialName": "Brass Jagger"
+        },
+        {
+          "slotId": "wood",
+          "materialId": "f0859b2b-e9cf-4a8d-950a-8705576eba56",
+          "materialName": "Ebony Kensington Jagger"
+        }
+      ],
+      "angle": {
+        "name": "angle",
+        "camera": {
+          "mode": "orbit",
+          "fov": 49,
+          "position": {
+            "x": -110,
+            "y": 168,
+            "z": 74
+          },
+          "rotation": {
+            "horizontal": -56,
+            "vertical": -10
+          }
+        },
+        "isProductSpecific": false
+      },
+      "format": "image/webp",
+      "resolution": {
+        "width": 3600,
+        "height": 2400
+      }
+    },
+    {
+      "filename": "arhaus-jagger-chair_arh-cloth-cary-linen_brass-jagger_ebony-kensington-jagger_angle.webp",
+      "productId": "84183632-1de0-47ee-8e87-5b1ee57292aa",
+      "productName": "Arhaus Jagger Chair",
+      "materials": [
+        {
+          "slotId": "fabric",
+          "materialId": "4acc5f88-5378-4521-9b39-0cf8d958c3a3",
+          "materialName": "Arh Cloth Cary Linen"
+        },
+        {
+          "slotId": "metal",
+          "materialId": "3f39755b-cd58-4bb0-b711-08c7798c14b2",
+          "materialName": "Brass Jagger"
+        },
+        {
+          "slotId": "wood",
+          "materialId": "f0859b2b-e9cf-4a8d-950a-8705576eba56",
+          "materialName": "Ebony Kensington Jagger"
+        }
+      ],
+      "angle": {
+        "name": "angle",
+        "camera": {
+          "mode": "orbit",
+          "fov": 49,
+          "position": {
+            "x": -110,
+            "y": 168,
+            "z": 74
+          },
+          "rotation": {
+            "horizontal": -56,
+            "vertical": -10
+          }
+        },
+        "isProductSpecific": false
+      },
+      "format": "image/webp",
+      "resolution": {
+        "width": 3600,
+        "height": 2400
+      }
+    },
+    {
+      "filename": "arhaus-jagger-chair_arh-cloth-downy-ebony_brass-jagger_ebony-kensington-jagger_angle.webp",
+      "productId": "84183632-1de0-47ee-8e87-5b1ee57292aa",
+      "productName": "Arhaus Jagger Chair",
+      "materials": [
+        {
+          "slotId": "fabric",
+          "materialId": "ab11aca3-4336-4383-a674-4873da2207fa",
+          "materialName": "Arh Cloth Downy Ebony"
+        },
+        {
+          "slotId": "metal",
+          "materialId": "3f39755b-cd58-4bb0-b711-08c7798c14b2",
+          "materialName": "Brass Jagger"
+        },
+        {
+          "slotId": "wood",
+          "materialId": "f0859b2b-e9cf-4a8d-950a-8705576eba56",
+          "materialName": "Ebony Kensington Jagger"
+        }
+      ],
+      "angle": {
+        "name": "angle",
+        "camera": {
+          "mode": "orbit",
+          "fov": 49,
+          "position": {
+            "x": -110,
+            "y": 168,
+            "z": 74
+          },
+          "rotation": {
+            "horizontal": -56,
+            "vertical": -10
+          }
+        },
+        "isProductSpecific": false
+      },
+      "format": "image/webp",
+      "resolution": {
+        "width": 3600,
+        "height": 2400
+      }
+    },
+    {
+      "filename": "arhaus-jagger-chair_arh-leather-buckeye_brass-jagger_ebony-kensington-jagger_angle.webp",
+      "productId": "84183632-1de0-47ee-8e87-5b1ee57292aa",
+      "productName": "Arhaus Jagger Chair",
+      "materials": [
+        {
+          "slotId": "fabric",
+          "materialId": "14b5adf4-f477-4100-89ca-c20ebcde9176",
+          "materialName": "Arh Leather Buckeye"
+        },
+        {
+          "slotId": "metal",
+          "materialId": "3f39755b-cd58-4bb0-b711-08c7798c14b2",
+          "materialName": "Brass Jagger"
+        },
+        {
+          "slotId": "wood",
+          "materialId": "f0859b2b-e9cf-4a8d-950a-8705576eba56",
+          "materialName": "Ebony Kensington Jagger"
+        }
+      ],
+      "angle": {
+        "name": "angle",
+        "camera": {
+          "mode": "orbit",
+          "fov": 49,
+          "position": {
+            "x": -110,
+            "y": 168,
+            "z": 74
+          },
+          "rotation": {
+            "horizontal": -56,
+            "vertical": -10
+          }
+        },
+        "isProductSpecific": false
+      },
+      "format": "image/webp",
+      "resolution": {
+        "width": 3600,
+        "height": 2400
+      }
+    },
+    {
+      "filename": "arhaus-jagger-chair_arh-leather-carbon_brass-jagger_ebony-kensington-jagger_angle.webp",
+      "productId": "84183632-1de0-47ee-8e87-5b1ee57292aa",
+      "productName": "Arhaus Jagger Chair",
+      "materials": [
+        {
+          "slotId": "fabric",
+          "materialId": "3f97469c-6e32-497a-b2be-a7e7005a2e7d",
+          "materialName": "Arh Leather Carbon"
+        },
+        {
+          "slotId": "metal",
+          "materialId": "3f39755b-cd58-4bb0-b711-08c7798c14b2",
+          "materialName": "Brass Jagger"
+        },
+        {
+          "slotId": "wood",
+          "materialId": "f0859b2b-e9cf-4a8d-950a-8705576eba56",
+          "materialName": "Ebony Kensington Jagger"
+        }
+      ],
+      "angle": {
+        "name": "angle",
+        "camera": {
+          "mode": "orbit",
+          "fov": 49,
+          "position": {
+            "x": -110,
+            "y": 168,
+            "z": 74
+          },
+          "rotation": {
+            "horizontal": -56,
+            "vertical": -10
+          }
+        },
+        "isProductSpecific": false
+      },
+      "format": "image/webp",
+      "resolution": {
+        "width": 3600,
+        "height": 2400
+      }
+    },
+    {
+      "filename": "jagger-barstool_arh-cloth-cary-linen_brass-jagger_ebony-kensington-jagger_angle.webp",
+      "productId": "8b5754da-70d0-415c-b414-a8212e74fbe1",
+      "productName": "Jagger Barstool",
+      "materials": [
+        {
+          "slotId": "fabric",
+          "materialId": "4acc5f88-5378-4521-9b39-0cf8d958c3a3",
+          "materialName": "Arh Cloth Cary Linen"
+        },
+        {
+          "slotId": "metal",
+          "materialId": "3f39755b-cd58-4bb0-b711-08c7798c14b2",
+          "materialName": "Brass Jagger"
+        },
+        {
+          "slotId": "wood",
+          "materialId": "f0859b2b-e9cf-4a8d-950a-8705576eba56",
+          "materialName": "Ebony Kensington Jagger"
+        }
+      ],
+      "angle": {
+        "name": "angle",
+        "camera": {
+          "mode": "orbit",
+          "fov": 49,
+          "position": {
+            "x": -110,
+            "y": 168,
+            "z": 74
+          },
+          "rotation": {
+            "horizontal": -56,
+            "vertical": -10
+          }
+        },
+        "isProductSpecific": false
+      },
+      "format": "image/webp",
+      "resolution": {
+        "width": 3600,
+        "height": 2400
+      }
+    },
+    {
+      "filename": "jagger-barstool_arh-cloth-downy-ebony_brass-jagger_ebony-kensington-jagger_angle.webp",
+      "productId": "8b5754da-70d0-415c-b414-a8212e74fbe1",
+      "productName": "Jagger Barstool",
+      "materials": [
+        {
+          "slotId": "fabric",
+          "materialId": "ab11aca3-4336-4383-a674-4873da2207fa",
+          "materialName": "Arh Cloth Downy Ebony"
+        },
+        {
+          "slotId": "metal",
+          "materialId": "3f39755b-cd58-4bb0-b711-08c7798c14b2",
+          "materialName": "Brass Jagger"
+        },
+        {
+          "slotId": "wood",
+          "materialId": "f0859b2b-e9cf-4a8d-950a-8705576eba56",
+          "materialName": "Ebony Kensington Jagger"
+        }
+      ],
+      "angle": {
+        "name": "angle",
+        "camera": {
+          "mode": "orbit",
+          "fov": 49,
+          "position": {
+            "x": -110,
+            "y": 168,
+            "z": 74
+          },
+          "rotation": {
+            "horizontal": -56,
+            "vertical": -10
+          }
+        },
+        "isProductSpecific": false
+      },
+      "format": "image/webp",
+      "resolution": {
+        "width": 3600,
+        "height": 2400
+      }
+    },
+    {
+      "filename": "jagger-barstool_arh-leather-buckeye_brass-jagger_ebony-kensington-jagger_angle.webp",
+      "productId": "8b5754da-70d0-415c-b414-a8212e74fbe1",
+      "productName": "Jagger Barstool",
+      "materials": [
+        {
+          "slotId": "fabric",
+          "materialId": "14b5adf4-f477-4100-89ca-c20ebcde9176",
+          "materialName": "Arh Leather Buckeye"
+        },
+        {
+          "slotId": "metal",
+          "materialId": "3f39755b-cd58-4bb0-b711-08c7798c14b2",
+          "materialName": "Brass Jagger"
+        },
+        {
+          "slotId": "wood",
+          "materialId": "f0859b2b-e9cf-4a8d-950a-8705576eba56",
+          "materialName": "Ebony Kensington Jagger"
+        }
+      ],
+      "angle": {
+        "name": "angle",
+        "camera": {
+          "mode": "orbit",
+          "fov": 49,
+          "position": {
+            "x": -110,
+            "y": 168,
+            "z": 74
+          },
+          "rotation": {
+            "horizontal": -56,
+            "vertical": -10
+          }
+        },
+        "isProductSpecific": false
+      },
+      "format": "image/webp",
+      "resolution": {
+        "width": 3600,
+        "height": 2400
+      }
+    },
+    {
+      "filename": "jagger-barstool_arh-leather-carbon_brass-jagger_ebony-kensington-jagger_angle.webp",
+      "productId": "8b5754da-70d0-415c-b414-a8212e74fbe1",
+      "productName": "Jagger Barstool",
+      "materials": [
+        {
+          "slotId": "fabric",
+          "materialId": "3f97469c-6e32-497a-b2be-a7e7005a2e7d",
+          "materialName": "Arh Leather Carbon"
+        },
+        {
+          "slotId": "metal",
+          "materialId": "3f39755b-cd58-4bb0-b711-08c7798c14b2",
+          "materialName": "Brass Jagger"
+        },
+        {
+          "slotId": "wood",
+          "materialId": "f0859b2b-e9cf-4a8d-950a-8705576eba56",
+          "materialName": "Ebony Kensington Jagger"
+        }
+      ],
+      "angle": {
+        "name": "angle",
+        "camera": {
+          "mode": "orbit",
+          "fov": 49,
+          "position": {
+            "x": -110,
+            "y": 168,
+            "z": 74
+          },
+          "rotation": {
+            "horizontal": -56,
+            "vertical": -10
+          }
+        },
+        "isProductSpecific": false
+      },
+      "format": "image/webp",
+      "resolution": {
+        "width": 3600,
+        "height": 2400
+      }
+    },
+    {
+      "filename": "jagger-dining-arm-chair_arh-cloth-cary-linen_brass-jagger_ebony-kensington-jagger_angle.webp",
+      "productId": "9a549b46-ee85-43e3-94bd-2c9b2f65022f",
+      "productName": "Jagger Dining Arm Chair",
+      "materials": [
+        {
+          "slotId": "fabric",
+          "materialId": "4acc5f88-5378-4521-9b39-0cf8d958c3a3",
+          "materialName": "Arh Cloth Cary Linen"
+        },
+        {
+          "slotId": "metal",
+          "materialId": "3f39755b-cd58-4bb0-b711-08c7798c14b2",
+          "materialName": "Brass Jagger"
+        },
+        {
+          "slotId": "wood",
+          "materialId": "f0859b2b-e9cf-4a8d-950a-8705576eba56",
+          "materialName": "Ebony Kensington Jagger"
+        }
+      ],
+      "angle": {
+        "name": "angle",
+        "camera": {
+          "mode": "orbit",
+          "fov": 49,
+          "position": {
+            "x": -110,
+            "y": 168,
+            "z": 74
+          },
+          "rotation": {
+            "horizontal": -56,
+            "vertical": -10
+          }
+        },
+        "isProductSpecific": false
+      },
+      "format": "image/webp",
+      "resolution": {
+        "width": 3600,
+        "height": 2400
+      }
+    },
+    {
+      "filename": "jagger-dining-arm-chair_arh-cloth-downy-ebony_brass-jagger_ebony-kensington-jagger_angle.webp",
+      "productId": "9a549b46-ee85-43e3-94bd-2c9b2f65022f",
+      "productName": "Jagger Dining Arm Chair",
+      "materials": [
+        {
+          "slotId": "fabric",
+          "materialId": "ab11aca3-4336-4383-a674-4873da2207fa",
+          "materialName": "Arh Cloth Downy Ebony"
+        },
+        {
+          "slotId": "metal",
+          "materialId": "3f39755b-cd58-4bb0-b711-08c7798c14b2",
+          "materialName": "Brass Jagger"
+        },
+        {
+          "slotId": "wood",
+          "materialId": "f0859b2b-e9cf-4a8d-950a-8705576eba56",
+          "materialName": "Ebony Kensington Jagger"
+        }
+      ],
+      "angle": {
+        "name": "angle",
+        "camera": {
+          "mode": "orbit",
+          "fov": 49,
+          "position": {
+            "x": -110,
+            "y": 168,
+            "z": 74
+          },
+          "rotation": {
+            "horizontal": -56,
+            "vertical": -10
+          }
+        },
+        "isProductSpecific": false
+      },
+      "format": "image/webp",
+      "resolution": {
+        "width": 3600,
+        "height": 2400
+      }
+    },
+    {
+      "filename": "jagger-dining-arm-chair_arh-leather-buckeye_brass-jagger_ebony-kensington-jagger_angle.webp",
+      "productId": "9a549b46-ee85-43e3-94bd-2c9b2f65022f",
+      "productName": "Jagger Dining Arm Chair",
+      "materials": [
+        {
+          "slotId": "fabric",
+          "materialId": "14b5adf4-f477-4100-89ca-c20ebcde9176",
+          "materialName": "Arh Leather Buckeye"
+        },
+        {
+          "slotId": "metal",
+          "materialId": "3f39755b-cd58-4bb0-b711-08c7798c14b2",
+          "materialName": "Brass Jagger"
+        },
+        {
+          "slotId": "wood",
+          "materialId": "f0859b2b-e9cf-4a8d-950a-8705576eba56",
+          "materialName": "Ebony Kensington Jagger"
+        }
+      ],
+      "angle": {
+        "name": "angle",
+        "camera": {
+          "mode": "orbit",
+          "fov": 49,
+          "position": {
+            "x": -110,
+            "y": 168,
+            "z": 74
+          },
+          "rotation": {
+            "horizontal": -56,
+            "vertical": -10
+          }
+        },
+        "isProductSpecific": false
+      },
+      "format": "image/webp",
+      "resolution": {
+        "width": 3600,
+        "height": 2400
+      }
+    },
+    {
+      "filename": "jagger-dining-arm-chair_arh-leather-carbon_brass-jagger_ebony-kensington-jagger_angle.webp",
+      "productId": "9a549b46-ee85-43e3-94bd-2c9b2f65022f",
+      "productName": "Jagger Dining Arm Chair",
+      "materials": [
+        {
+          "slotId": "fabric",
+          "materialId": "3f97469c-6e32-497a-b2be-a7e7005a2e7d",
+          "materialName": "Arh Leather Carbon"
+        },
+        {
+          "slotId": "metal",
+          "materialId": "3f39755b-cd58-4bb0-b711-08c7798c14b2",
+          "materialName": "Brass Jagger"
+        },
+        {
+          "slotId": "wood",
+          "materialId": "f0859b2b-e9cf-4a8d-950a-8705576eba56",
+          "materialName": "Ebony Kensington Jagger"
+        }
+      ],
+      "angle": {
+        "name": "angle",
+        "camera": {
+          "mode": "orbit",
+          "fov": 49,
+          "position": {
+            "x": -110,
+            "y": 168,
+            "z": 74
+          },
+          "rotation": {
+            "horizontal": -56,
+            "vertical": -10
+          }
+        },
+        "isProductSpecific": false
+      },
+      "format": "image/webp",
+      "resolution": {
+        "width": 3600,
+        "height": 2400
+      }
+    },
+    {
+      "filename": "jagger-dining-side-chair_arh-cloth-cary-linen_brass-jagger_ebony-kensington-jagger_side.webp",
+      "productId": "08d2fbdb-9b72-47e9-adfd-4bb697b1672c",
+      "productName": "Jagger Dining Side Chair",
+      "materials": [
+        {
+          "slotId": "fabric",
+          "materialId": "4acc5f88-5378-4521-9b39-0cf8d958c3a3",
+          "materialName": "Arh Cloth Cary Linen"
+        },
+        {
+          "slotId": "metal",
+          "materialId": "3f39755b-cd58-4bb0-b711-08c7798c14b2",
+          "materialName": "Brass Jagger"
+        },
+        {
+          "slotId": "wood",
+          "materialId": "f0859b2b-e9cf-4a8d-950a-8705576eba56",
+          "materialName": "Ebony Kensington Jagger"
+        }
+      ],
+      "angle": {
+        "name": "side",
+        "camera": {
+          "mode": "orbit",
+          "fov": 49,
+          "position": {
+            "x": -199,
+            "y": -5,
+            "z": 68
+          },
+          "rotation": {
+            "horizontal": 2,
+            "vertical": -8
+          }
+        },
+        "isProductSpecific": false
+      },
+      "format": "image/webp",
+      "resolution": {
+        "width": 3600,
+        "height": 2400
+      }
+    },
+    {
+      "filename": "jagger-dining-side-chair_arh-cloth-downy-ebony_brass-jagger_ebony-kensington-jagger_side.webp",
+      "productId": "08d2fbdb-9b72-47e9-adfd-4bb697b1672c",
+      "productName": "Jagger Dining Side Chair",
+      "materials": [
+        {
+          "slotId": "fabric",
+          "materialId": "ab11aca3-4336-4383-a674-4873da2207fa",
+          "materialName": "Arh Cloth Downy Ebony"
+        },
+        {
+          "slotId": "metal",
+          "materialId": "3f39755b-cd58-4bb0-b711-08c7798c14b2",
+          "materialName": "Brass Jagger"
+        },
+        {
+          "slotId": "wood",
+          "materialId": "f0859b2b-e9cf-4a8d-950a-8705576eba56",
+          "materialName": "Ebony Kensington Jagger"
+        }
+      ],
+      "angle": {
+        "name": "side",
+        "camera": {
+          "mode": "orbit",
+          "fov": 49,
+          "position": {
+            "x": -199,
+            "y": -5,
+            "z": 68
+          },
+          "rotation": {
+            "horizontal": 2,
+            "vertical": -8
+          }
+        },
+        "isProductSpecific": false
+      },
+      "format": "image/webp",
+      "resolution": {
+        "width": 3600,
+        "height": 2400
+      }
+    },
+    {
+      "filename": "jagger-dining-side-chair_arh-leather-buckeye_brass-jagger_ebony-kensington-jagger_side.webp",
+      "productId": "08d2fbdb-9b72-47e9-adfd-4bb697b1672c",
+      "productName": "Jagger Dining Side Chair",
+      "materials": [
+        {
+          "slotId": "fabric",
+          "materialId": "14b5adf4-f477-4100-89ca-c20ebcde9176",
+          "materialName": "Arh Leather Buckeye"
+        },
+        {
+          "slotId": "metal",
+          "materialId": "3f39755b-cd58-4bb0-b711-08c7798c14b2",
+          "materialName": "Brass Jagger"
+        },
+        {
+          "slotId": "wood",
+          "materialId": "f0859b2b-e9cf-4a8d-950a-8705576eba56",
+          "materialName": "Ebony Kensington Jagger"
+        }
+      ],
+      "angle": {
+        "name": "side",
+        "camera": {
+          "mode": "orbit",
+          "fov": 49,
+          "position": {
+            "x": -199,
+            "y": -5,
+            "z": 68
+          },
+          "rotation": {
+            "horizontal": 2,
+            "vertical": -8
+          }
+        },
+        "isProductSpecific": false
+      },
+      "format": "image/webp",
+      "resolution": {
+        "width": 3600,
+        "height": 2400
+      }
+    },
+    {
+      "filename": "jagger-dining-side-chair_arh-leather-carbon_brass-jagger_ebony-kensington-jagger_side.webp",
+      "productId": "08d2fbdb-9b72-47e9-adfd-4bb697b1672c",
+      "productName": "Jagger Dining Side Chair",
+      "materials": [
+        {
+          "slotId": "fabric",
+          "materialId": "3f97469c-6e32-497a-b2be-a7e7005a2e7d",
+          "materialName": "Arh Leather Carbon"
+        },
+        {
+          "slotId": "metal",
+          "materialId": "3f39755b-cd58-4bb0-b711-08c7798c14b2",
+          "materialName": "Brass Jagger"
+        },
+        {
+          "slotId": "wood",
+          "materialId": "f0859b2b-e9cf-4a8d-950a-8705576eba56",
+          "materialName": "Ebony Kensington Jagger"
+        }
+      ],
+      "angle": {
+        "name": "side",
+        "camera": {
+          "mode": "orbit",
+          "fov": 49,
+          "position": {
+            "x": -199,
+            "y": -5,
+            "z": 68
+          },
+          "rotation": {
+            "horizontal": 2,
+            "vertical": -8
+          }
+        },
+        "isProductSpecific": false
+      },
+      "format": "image/webp",
+      "resolution": {
+        "width": 3600,
+        "height": 2400
+      }
+    },
+    {
+      "filename": "arhaus-jagger-dining-bench_arh-cloth-cary-linen_brass-jagger_ebony-kensington-jagger_side.webp",
+      "productId": "2a4837fb-73be-4743-8228-32545b1939d6",
+      "productName": "Arhaus Jagger Dining Bench",
+      "materials": [
+        {
+          "slotId": "fabric",
+          "materialId": "4acc5f88-5378-4521-9b39-0cf8d958c3a3",
+          "materialName": "Arh Cloth Cary Linen"
+        },
+        {
+          "slotId": "metal",
+          "materialId": "3f39755b-cd58-4bb0-b711-08c7798c14b2",
+          "materialName": "Brass Jagger"
+        },
+        {
+          "slotId": "wood",
+          "materialId": "f0859b2b-e9cf-4a8d-950a-8705576eba56",
+          "materialName": "Ebony Kensington Jagger"
+        }
+      ],
+      "angle": {
+        "name": "side",
+        "camera": {
+          "mode": "orbit",
+          "fov": 49,
+          "position": {
+            "x": -199,
+            "y": -5,
+            "z": 68
+          },
+          "rotation": {
+            "horizontal": 2,
+            "vertical": -8
+          }
+        },
+        "isProductSpecific": false
+      },
+      "format": "image/webp",
+      "resolution": {
+        "width": 3600,
+        "height": 2400
+      }
+    },
+    {
+      "filename": "arhaus-jagger-dining-bench_arh-cloth-downy-ebony_brass-jagger_ebony-kensington-jagger_side.webp",
+      "productId": "2a4837fb-73be-4743-8228-32545b1939d6",
+      "productName": "Arhaus Jagger Dining Bench",
+      "materials": [
+        {
+          "slotId": "fabric",
+          "materialId": "ab11aca3-4336-4383-a674-4873da2207fa",
+          "materialName": "Arh Cloth Downy Ebony"
+        },
+        {
+          "slotId": "metal",
+          "materialId": "3f39755b-cd58-4bb0-b711-08c7798c14b2",
+          "materialName": "Brass Jagger"
+        },
+        {
+          "slotId": "wood",
+          "materialId": "f0859b2b-e9cf-4a8d-950a-8705576eba56",
+          "materialName": "Ebony Kensington Jagger"
+        }
+      ],
+      "angle": {
+        "name": "side",
+        "camera": {
+          "mode": "orbit",
+          "fov": 49,
+          "position": {
+            "x": -199,
+            "y": -5,
+            "z": 68
+          },
+          "rotation": {
+            "horizontal": 2,
+            "vertical": -8
+          }
+        },
+        "isProductSpecific": false
+      },
+      "format": "image/webp",
+      "resolution": {
+        "width": 3600,
+        "height": 2400
+      }
+    },
+    {
+      "filename": "arhaus-jagger-dining-bench_arh-leather-buckeye_brass-jagger_ebony-kensington-jagger_side.webp",
+      "productId": "2a4837fb-73be-4743-8228-32545b1939d6",
+      "productName": "Arhaus Jagger Dining Bench",
+      "materials": [
+        {
+          "slotId": "fabric",
+          "materialId": "14b5adf4-f477-4100-89ca-c20ebcde9176",
+          "materialName": "Arh Leather Buckeye"
+        },
+        {
+          "slotId": "metal",
+          "materialId": "3f39755b-cd58-4bb0-b711-08c7798c14b2",
+          "materialName": "Brass Jagger"
+        },
+        {
+          "slotId": "wood",
+          "materialId": "f0859b2b-e9cf-4a8d-950a-8705576eba56",
+          "materialName": "Ebony Kensington Jagger"
+        }
+      ],
+      "angle": {
+        "name": "side",
+        "camera": {
+          "mode": "orbit",
+          "fov": 49,
+          "position": {
+            "x": -199,
+            "y": -5,
+            "z": 68
+          },
+          "rotation": {
+            "horizontal": 2,
+            "vertical": -8
+          }
+        },
+        "isProductSpecific": false
+      },
+      "format": "image/webp",
+      "resolution": {
+        "width": 3600,
+        "height": 2400
+      }
+    },
+    {
+      "filename": "arhaus-jagger-dining-bench_arh-leather-carbon_brass-jagger_ebony-kensington-jagger_side.webp",
+      "productId": "2a4837fb-73be-4743-8228-32545b1939d6",
+      "productName": "Arhaus Jagger Dining Bench",
+      "materials": [
+        {
+          "slotId": "fabric",
+          "materialId": "3f97469c-6e32-497a-b2be-a7e7005a2e7d",
+          "materialName": "Arh Leather Carbon"
+        },
+        {
+          "slotId": "metal",
+          "materialId": "3f39755b-cd58-4bb0-b711-08c7798c14b2",
+          "materialName": "Brass Jagger"
+        },
+        {
+          "slotId": "wood",
+          "materialId": "f0859b2b-e9cf-4a8d-950a-8705576eba56",
+          "materialName": "Ebony Kensington Jagger"
+        }
+      ],
+      "angle": {
+        "name": "side",
+        "camera": {
+          "mode": "orbit",
+          "fov": 49,
+          "position": {
+            "x": -199,
+            "y": -5,
+            "z": 68
+          },
+          "rotation": {
+            "horizontal": 2,
+            "vertical": -8
+          }
+        },
+        "isProductSpecific": false
+      },
+      "format": "image/webp",
+      "resolution": {
+        "width": 3600,
+        "height": 2400
+      }
+    },
+    {
+      "filename": "arhaus-jagger-chair_arh-cloth-cary-linen_brass-jagger_ebony-kensington-jagger_side.webp",
+      "productId": "84183632-1de0-47ee-8e87-5b1ee57292aa",
+      "productName": "Arhaus Jagger Chair",
+      "materials": [
+        {
+          "slotId": "fabric",
+          "materialId": "4acc5f88-5378-4521-9b39-0cf8d958c3a3",
+          "materialName": "Arh Cloth Cary Linen"
+        },
+        {
+          "slotId": "metal",
+          "materialId": "3f39755b-cd58-4bb0-b711-08c7798c14b2",
+          "materialName": "Brass Jagger"
+        },
+        {
+          "slotId": "wood",
+          "materialId": "f0859b2b-e9cf-4a8d-950a-8705576eba56",
+          "materialName": "Ebony Kensington Jagger"
+        }
+      ],
+      "angle": {
+        "name": "side",
+        "camera": {
+          "mode": "orbit",
+          "fov": 49,
+          "position": {
+            "x": -199,
+            "y": -5,
+            "z": 68
+          },
+          "rotation": {
+            "horizontal": 2,
+            "vertical": -8
+          }
+        },
+        "isProductSpecific": false
+      },
+      "format": "image/webp",
+      "resolution": {
+        "width": 3600,
+        "height": 2400
+      }
+    },
+    {
+      "filename": "arhaus-jagger-chair_arh-cloth-downy-ebony_brass-jagger_ebony-kensington-jagger_side.webp",
+      "productId": "84183632-1de0-47ee-8e87-5b1ee57292aa",
+      "productName": "Arhaus Jagger Chair",
+      "materials": [
+        {
+          "slotId": "fabric",
+          "materialId": "ab11aca3-4336-4383-a674-4873da2207fa",
+          "materialName": "Arh Cloth Downy Ebony"
+        },
+        {
+          "slotId": "metal",
+          "materialId": "3f39755b-cd58-4bb0-b711-08c7798c14b2",
+          "materialName": "Brass Jagger"
+        },
+        {
+          "slotId": "wood",
+          "materialId": "f0859b2b-e9cf-4a8d-950a-8705576eba56",
+          "materialName": "Ebony Kensington Jagger"
+        }
+      ],
+      "angle": {
+        "name": "side",
+        "camera": {
+          "mode": "orbit",
+          "fov": 49,
+          "position": {
+            "x": -199,
+            "y": -5,
+            "z": 68
+          },
+          "rotation": {
+            "horizontal": 2,
+            "vertical": -8
+          }
+        },
+        "isProductSpecific": false
+      },
+      "format": "image/webp",
+      "resolution": {
+        "width": 3600,
+        "height": 2400
+      }
+    },
+    {
+      "filename": "arhaus-jagger-chair_arh-leather-buckeye_brass-jagger_ebony-kensington-jagger_side.webp",
+      "productId": "84183632-1de0-47ee-8e87-5b1ee57292aa",
+      "productName": "Arhaus Jagger Chair",
+      "materials": [
+        {
+          "slotId": "fabric",
+          "materialId": "14b5adf4-f477-4100-89ca-c20ebcde9176",
+          "materialName": "Arh Leather Buckeye"
+        },
+        {
+          "slotId": "metal",
+          "materialId": "3f39755b-cd58-4bb0-b711-08c7798c14b2",
+          "materialName": "Brass Jagger"
+        },
+        {
+          "slotId": "wood",
+          "materialId": "f0859b2b-e9cf-4a8d-950a-8705576eba56",
+          "materialName": "Ebony Kensington Jagger"
+        }
+      ],
+      "angle": {
+        "name": "side",
+        "camera": {
+          "mode": "orbit",
+          "fov": 49,
+          "position": {
+            "x": -199,
+            "y": -5,
+            "z": 68
+          },
+          "rotation": {
+            "horizontal": 2,
+            "vertical": -8
+          }
+        },
+        "isProductSpecific": false
+      },
+      "format": "image/webp",
+      "resolution": {
+        "width": 3600,
+        "height": 2400
+      }
+    },
+    {
+      "filename": "arhaus-jagger-chair_arh-leather-carbon_brass-jagger_ebony-kensington-jagger_side.webp",
+      "productId": "84183632-1de0-47ee-8e87-5b1ee57292aa",
+      "productName": "Arhaus Jagger Chair",
+      "materials": [
+        {
+          "slotId": "fabric",
+          "materialId": "3f97469c-6e32-497a-b2be-a7e7005a2e7d",
+          "materialName": "Arh Leather Carbon"
+        },
+        {
+          "slotId": "metal",
+          "materialId": "3f39755b-cd58-4bb0-b711-08c7798c14b2",
+          "materialName": "Brass Jagger"
+        },
+        {
+          "slotId": "wood",
+          "materialId": "f0859b2b-e9cf-4a8d-950a-8705576eba56",
+          "materialName": "Ebony Kensington Jagger"
+        }
+      ],
+      "angle": {
+        "name": "side",
+        "camera": {
+          "mode": "orbit",
+          "fov": 49,
+          "position": {
+            "x": -199,
+            "y": -5,
+            "z": 68
+          },
+          "rotation": {
+            "horizontal": 2,
+            "vertical": -8
+          }
+        },
+        "isProductSpecific": false
+      },
+      "format": "image/webp",
+      "resolution": {
+        "width": 3600,
+        "height": 2400
+      }
+    },
+    {
+      "filename": "jagger-barstool_arh-cloth-cary-linen_brass-jagger_ebony-kensington-jagger_side.webp",
+      "productId": "8b5754da-70d0-415c-b414-a8212e74fbe1",
+      "productName": "Jagger Barstool",
+      "materials": [
+        {
+          "slotId": "fabric",
+          "materialId": "4acc5f88-5378-4521-9b39-0cf8d958c3a3",
+          "materialName": "Arh Cloth Cary Linen"
+        },
+        {
+          "slotId": "metal",
+          "materialId": "3f39755b-cd58-4bb0-b711-08c7798c14b2",
+          "materialName": "Brass Jagger"
+        },
+        {
+          "slotId": "wood",
+          "materialId": "f0859b2b-e9cf-4a8d-950a-8705576eba56",
+          "materialName": "Ebony Kensington Jagger"
+        }
+      ],
+      "angle": {
+        "name": "side",
+        "camera": {
+          "mode": "orbit",
+          "fov": 49,
+          "position": {
+            "x": -199,
+            "y": -5,
+            "z": 68
+          },
+          "rotation": {
+            "horizontal": 2,
+            "vertical": -8
+          }
+        },
+        "isProductSpecific": false
+      },
+      "format": "image/webp",
+      "resolution": {
+        "width": 3600,
+        "height": 2400
+      }
+    },
+    {
+      "filename": "jagger-barstool_arh-cloth-downy-ebony_brass-jagger_ebony-kensington-jagger_side.webp",
+      "productId": "8b5754da-70d0-415c-b414-a8212e74fbe1",
+      "productName": "Jagger Barstool",
+      "materials": [
+        {
+          "slotId": "fabric",
+          "materialId": "ab11aca3-4336-4383-a674-4873da2207fa",
+          "materialName": "Arh Cloth Downy Ebony"
+        },
+        {
+          "slotId": "metal",
+          "materialId": "3f39755b-cd58-4bb0-b711-08c7798c14b2",
+          "materialName": "Brass Jagger"
+        },
+        {
+          "slotId": "wood",
+          "materialId": "f0859b2b-e9cf-4a8d-950a-8705576eba56",
+          "materialName": "Ebony Kensington Jagger"
+        }
+      ],
+      "angle": {
+        "name": "side",
+        "camera": {
+          "mode": "orbit",
+          "fov": 49,
+          "position": {
+            "x": -199,
+            "y": -5,
+            "z": 68
+          },
+          "rotation": {
+            "horizontal": 2,
+            "vertical": -8
+          }
+        },
+        "isProductSpecific": false
+      },
+      "format": "image/webp",
+      "resolution": {
+        "width": 3600,
+        "height": 2400
+      }
+    },
+    {
+      "filename": "jagger-barstool_arh-leather-buckeye_brass-jagger_ebony-kensington-jagger_side.webp",
+      "productId": "8b5754da-70d0-415c-b414-a8212e74fbe1",
+      "productName": "Jagger Barstool",
+      "materials": [
+        {
+          "slotId": "fabric",
+          "materialId": "14b5adf4-f477-4100-89ca-c20ebcde9176",
+          "materialName": "Arh Leather Buckeye"
+        },
+        {
+          "slotId": "metal",
+          "materialId": "3f39755b-cd58-4bb0-b711-08c7798c14b2",
+          "materialName": "Brass Jagger"
+        },
+        {
+          "slotId": "wood",
+          "materialId": "f0859b2b-e9cf-4a8d-950a-8705576eba56",
+          "materialName": "Ebony Kensington Jagger"
+        }
+      ],
+      "angle": {
+        "name": "side",
+        "camera": {
+          "mode": "orbit",
+          "fov": 49,
+          "position": {
+            "x": -199,
+            "y": -5,
+            "z": 68
+          },
+          "rotation": {
+            "horizontal": 2,
+            "vertical": -8
+          }
+        },
+        "isProductSpecific": false
+      },
+      "format": "image/webp",
+      "resolution": {
+        "width": 3600,
+        "height": 2400
+      }
+    },
+    {
+      "filename": "jagger-barstool_arh-leather-carbon_brass-jagger_ebony-kensington-jagger_side.webp",
+      "productId": "8b5754da-70d0-415c-b414-a8212e74fbe1",
+      "productName": "Jagger Barstool",
+      "materials": [
+        {
+          "slotId": "fabric",
+          "materialId": "3f97469c-6e32-497a-b2be-a7e7005a2e7d",
+          "materialName": "Arh Leather Carbon"
+        },
+        {
+          "slotId": "metal",
+          "materialId": "3f39755b-cd58-4bb0-b711-08c7798c14b2",
+          "materialName": "Brass Jagger"
+        },
+        {
+          "slotId": "wood",
+          "materialId": "f0859b2b-e9cf-4a8d-950a-8705576eba56",
+          "materialName": "Ebony Kensington Jagger"
+        }
+      ],
+      "angle": {
+        "name": "side",
+        "camera": {
+          "mode": "orbit",
+          "fov": 49,
+          "position": {
+            "x": -199,
+            "y": -5,
+            "z": 68
+          },
+          "rotation": {
+            "horizontal": 2,
+            "vertical": -8
+          }
+        },
+        "isProductSpecific": false
+      },
+      "format": "image/webp",
+      "resolution": {
+        "width": 3600,
+        "height": 2400
+      }
+    },
+    {
+      "filename": "jagger-dining-arm-chair_arh-cloth-cary-linen_brass-jagger_ebony-kensington-jagger_side.webp",
+      "productId": "9a549b46-ee85-43e3-94bd-2c9b2f65022f",
+      "productName": "Jagger Dining Arm Chair",
+      "materials": [
+        {
+          "slotId": "fabric",
+          "materialId": "4acc5f88-5378-4521-9b39-0cf8d958c3a3",
+          "materialName": "Arh Cloth Cary Linen"
+        },
+        {
+          "slotId": "metal",
+          "materialId": "3f39755b-cd58-4bb0-b711-08c7798c14b2",
+          "materialName": "Brass Jagger"
+        },
+        {
+          "slotId": "wood",
+          "materialId": "f0859b2b-e9cf-4a8d-950a-8705576eba56",
+          "materialName": "Ebony Kensington Jagger"
+        }
+      ],
+      "angle": {
+        "name": "side",
+        "camera": {
+          "mode": "orbit",
+          "fov": 49,
+          "position": {
+            "x": -199,
+            "y": -5,
+            "z": 68
+          },
+          "rotation": {
+            "horizontal": 2,
+            "vertical": -8
+          }
+        },
+        "isProductSpecific": false
+      },
+      "format": "image/webp",
+      "resolution": {
+        "width": 3600,
+        "height": 2400
+      }
+    },
+    {
+      "filename": "jagger-dining-arm-chair_arh-cloth-downy-ebony_brass-jagger_ebony-kensington-jagger_side.webp",
+      "productId": "9a549b46-ee85-43e3-94bd-2c9b2f65022f",
+      "productName": "Jagger Dining Arm Chair",
+      "materials": [
+        {
+          "slotId": "fabric",
+          "materialId": "ab11aca3-4336-4383-a674-4873da2207fa",
+          "materialName": "Arh Cloth Downy Ebony"
+        },
+        {
+          "slotId": "metal",
+          "materialId": "3f39755b-cd58-4bb0-b711-08c7798c14b2",
+          "materialName": "Brass Jagger"
+        },
+        {
+          "slotId": "wood",
+          "materialId": "f0859b2b-e9cf-4a8d-950a-8705576eba56",
+          "materialName": "Ebony Kensington Jagger"
+        }
+      ],
+      "angle": {
+        "name": "side",
+        "camera": {
+          "mode": "orbit",
+          "fov": 49,
+          "position": {
+            "x": -199,
+            "y": -5,
+            "z": 68
+          },
+          "rotation": {
+            "horizontal": 2,
+            "vertical": -8
+          }
+        },
+        "isProductSpecific": false
+      },
+      "format": "image/webp",
+      "resolution": {
+        "width": 3600,
+        "height": 2400
+      }
+    },
+    {
+      "filename": "jagger-dining-arm-chair_arh-leather-buckeye_brass-jagger_ebony-kensington-jagger_side.webp",
+      "productId": "9a549b46-ee85-43e3-94bd-2c9b2f65022f",
+      "productName": "Jagger Dining Arm Chair",
+      "materials": [
+        {
+          "slotId": "fabric",
+          "materialId": "14b5adf4-f477-4100-89ca-c20ebcde9176",
+          "materialName": "Arh Leather Buckeye"
+        },
+        {
+          "slotId": "metal",
+          "materialId": "3f39755b-cd58-4bb0-b711-08c7798c14b2",
+          "materialName": "Brass Jagger"
+        },
+        {
+          "slotId": "wood",
+          "materialId": "f0859b2b-e9cf-4a8d-950a-8705576eba56",
+          "materialName": "Ebony Kensington Jagger"
+        }
+      ],
+      "angle": {
+        "name": "side",
+        "camera": {
+          "mode": "orbit",
+          "fov": 49,
+          "position": {
+            "x": -199,
+            "y": -5,
+            "z": 68
+          },
+          "rotation": {
+            "horizontal": 2,
+            "vertical": -8
+          }
+        },
+        "isProductSpecific": false
+      },
+      "format": "image/webp",
+      "resolution": {
+        "width": 3600,
+        "height": 2400
+      }
+    },
+    {
+      "filename": "jagger-dining-arm-chair_arh-leather-carbon_brass-jagger_ebony-kensington-jagger_side.webp",
+      "productId": "9a549b46-ee85-43e3-94bd-2c9b2f65022f",
+      "productName": "Jagger Dining Arm Chair",
+      "materials": [
+        {
+          "slotId": "fabric",
+          "materialId": "3f97469c-6e32-497a-b2be-a7e7005a2e7d",
+          "materialName": "Arh Leather Carbon"
+        },
+        {
+          "slotId": "metal",
+          "materialId": "3f39755b-cd58-4bb0-b711-08c7798c14b2",
+          "materialName": "Brass Jagger"
+        },
+        {
+          "slotId": "wood",
+          "materialId": "f0859b2b-e9cf-4a8d-950a-8705576eba56",
+          "materialName": "Ebony Kensington Jagger"
+        }
+      ],
+      "angle": {
+        "name": "side",
+        "camera": {
+          "mode": "orbit",
+          "fov": 49,
+          "position": {
+            "x": -199,
+            "y": -5,
+            "z": 68
+          },
+          "rotation": {
+            "horizontal": 2,
+            "vertical": -8
+          }
+        },
+        "isProductSpecific": false
+      },
+      "format": "image/webp",
+      "resolution": {
+        "width": 3600,
+        "height": 2400
+      }
+    }
+  ]
+}

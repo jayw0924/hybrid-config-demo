@@ -783,10 +783,11 @@
           imageExtension: '.webp',
 
           // Camera angles → thumbnail strip (first = default)
+          // Camera data from render-metadata.json for real-time 3D sync
           angles: [
-            { key: 'front', label: 'Front View' },
-            { key: 'angle', label: 'Angle View' },
-            { key: 'side', label: 'Side View' },
+            { key: 'front', label: 'Front View', camera: { mode: 'orbit', fov: 49, position: { x: 3, y: 202, z: 77 }, rotation: { horizontal: -90, vertical: -11 } } },
+            { key: 'angle', label: 'Angle View', camera: { mode: 'orbit', fov: 49, position: { x: -110, y: 168, z: 74 }, rotation: { horizontal: -56, vertical: -10 } } },
+            { key: 'side', label: 'Side View', camera: { mode: 'orbit', fov: 49, position: { x: -199, y: -5, z: 68 }, rotation: { horizontal: 2, vertical: -8 } } },
           ],
 
           // Products available in pre-render mode (first = default)
@@ -844,6 +845,7 @@
         GetCallToActionInformation,
         ShowEmbeddedMenu,
         ShowOverlayInterface,
+        SetCamera,
         saveImage,
       } from 'https://cdn.jsdelivr.net/npm/@3dsource/metabox-front-api@latest/+esm';
       import { createApp } from 'vue';
@@ -863,9 +865,12 @@
         environmentSlots = null;
         productMaterialsIds = null;
         api = {};
+        viewportReady = false;
+        onViewportReady = null; // callback for pending camera
 
         ready(api) {
           this.api = api;
+          this.viewportReady = false;
           this.addApiEventListeners();
 
           // Hide default configurator UI since we're providing custom controls
@@ -882,6 +887,13 @@
           });
           this.api.addEventListener('screenshotReady', (data) => {
             saveImage(data, 'Render.png');
+          });
+          this.api.addEventListener('viewportReady', (ready) => {
+            this.viewportReady = ready;
+            if (ready && this.onViewportReady) {
+              this.onViewportReady();
+              this.onViewportReady = null;
+            }
           });
         }
 
@@ -949,6 +961,12 @@
           );
         }
 
+        sendCamera(cameraPayload) {
+          // Deep clone to strip Vue's reactive Proxy — postMessage requires plain objects
+          const plain = JSON.parse(JSON.stringify(cameraPayload));
+          this.api.sendCommandToMetabox(new SetCamera(plain));
+        }
+
         getRender(size) {
           this.api.sendCommandToMetabox(new GetScreenshot('image/png', size));
         }
@@ -979,6 +997,9 @@
             // Pre-render selections
             selectedProduct: HYBRID_CONFIG.prerender.products[0].key,
             selections: {},           // { slotKey: materialKey }
+
+            // Camera angles from render metadata { angleKey: cameraPayload }
+            cameraAngles: {},
           };
         },
 
@@ -989,20 +1010,15 @@
             defaults[slot.key] = slot.materials[0].key;
           }
           this.selections = defaults;
+
+          // Build camera angle lookup from config
+          this.loadCameraAngles();
         },
 
         computed: {
           /** URL for the main (large) pre-render image */
           mainImageUrl() {
             return this.resolveImageUrl(this.activeAngle);
-          },
-
-          /** Thumbnail data for the angle strip */
-          thumbnails() {
-            return this.config.prerender.angles.map((angle) => ({
-              ...angle,
-              url: this.resolveImageUrl(angle.key),
-            }));
           },
 
           /** Active product display name */
@@ -1034,6 +1050,18 @@
               (p) => normalize(p.label) === normalize(this.shim.product.title)
             );
             return matched ? matched.dimensions : '';
+          },
+
+          /** In realtime mode, map the 3D product title back to a config product key */
+          currentProductKey() {
+            if (this.mode === 'realtime' && this.shim.product) {
+              const normalize = (s) => s.toLowerCase().trim();
+              const matched = this.config.prerender.products.find(
+                (p) => normalize(p.label) === normalize(this.shim.product.title)
+              );
+              if (matched) return matched.key;
+            }
+            return this.selectedProduct;
           },
         },
 
@@ -1071,7 +1099,7 @@
             );
             return (
               cfg.imageBasePath +
-              [productKey || this.selectedProduct, ...materialSegments, angleKey].join('_') +
+              [productKey || this.currentProductKey, ...materialSegments, angleKey].join('_') +
               (cfg.imageExtension || '.webp')
             );
           },
@@ -1102,9 +1130,31 @@
             this.selections[slotKey] = materialKey;
           },
 
-          /** Switch camera angle thumbnail */
+          /** Switch camera angle — updates thumbnail and moves 3D camera if in realtime */
           selectAngle(angleKey) {
             this.activeAngle = angleKey;
+            if (this.mode === 'realtime' && !this.transitioning) {
+              this.applyCameraForAngle(angleKey);
+            }
+          },
+
+          /** Send SetCamera command for a given angle key */
+          applyCameraForAngle(angleKey) {
+            const camera = this.cameraAngles[angleKey];
+            if (camera && this.shim.api?.sendCommandToMetabox) {
+              this.shim.sendCamera(camera);
+            }
+          },
+
+          /** Build camera angle lookup from config */
+          loadCameraAngles() {
+            const angles = {};
+            for (const angle of this.config.prerender.angles) {
+              if (angle.camera) {
+                angles[angle.key] = angle.camera;
+              }
+            }
+            this.cameraAngles = angles;
           },
 
           /**
@@ -1196,8 +1246,17 @@
               }
             }
 
-            // Sync complete — end transition, gallery fades out
+            // Sync complete — fade out gallery
             this.transitioning = false;
+
+            // Set camera to match the pre-render angle once viewport is ready
+            const applyCamera = () => this.applyCameraForAngle(this.activeAngle);
+
+            if (this.shim.viewportReady) {
+              setTimeout(applyCamera, 500);
+            } else {
+              this.shim.onViewportReady = applyCamera;
+            }
           },
         },
 
@@ -1260,14 +1319,14 @@
         <!-- Thumbnail strip (always visible) -->
         <div class="thumbnail-strip">
           <img
-            v-for="thumb in thumbnails"
-            :key="thumb.key"
-            :src="thumb.url"
-            :alt="thumb.label"
-            :title="thumb.label"
+            v-for="angle in config.prerender.angles"
+            :key="angle.key"
+            :src="resolveImageUrl(angle.key)"
+            :alt="angle.label"
+            :title="angle.label"
             class="thumbnail"
-            :class="{ active: activeAngle === thumb.key }"
-            @click="selectAngle(thumb.key)"
+            :class="{ active: activeAngle === angle.key }"
+            @click="selectAngle(angle.key)"
             @error="onImageError"
           />
         </div>
