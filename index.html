@@ -953,6 +953,53 @@
           this.api.sendCommandToMetabox(
             new SetProductMaterial(slotId, materialId),
           );
+
+          // Sync environment materials with product materials
+          this.syncEnvironmentMaterial(slotId, materialId);
+        }
+
+        syncEnvironmentMaterial(productSlotId, materialId) {
+          if (!this.productSlots || !this.environmentSlots) return;
+
+          // Find the product slot to get its label
+          const productSlot = this.productSlots.find(
+            (slot) => slot.id === productSlotId,
+          );
+          if (!productSlot) return;
+
+          // Find the selected material to get its title
+          const productMaterial = productSlot.enabledMaterials.find(
+            (m) => m.id === materialId,
+          );
+          if (!productMaterial) return;
+
+          // Map product slot labels to environment slot labels (normalized)
+          const normalize = (s) => s.toLowerCase().trim();
+          const slotMapping = {
+            'seat and backrest': 'Chairs Fabric',
+            'seat & backrest': 'Chairs Fabric',
+            'frame': 'Chairs Wood',
+            'metal finish': 'Chairs Metal',
+          };
+
+          const normalizedSlotLabel = normalize(productSlot.label);
+          const environmentSlotLabel = slotMapping[normalizedSlotLabel];
+          if (!environmentSlotLabel) return;
+
+          // Find the corresponding environment slot
+          const environmentSlot = this.environmentSlots.find(
+            (slot) => slot.label === environmentSlotLabel,
+          );
+          if (!environmentSlot) return;
+
+          // Find the matching material in the environment slot by title
+          const environmentMaterial = environmentSlot.enabledMaterials.find(
+            (m) => normalize(m.title) === normalize(productMaterial.title),
+          );
+          if (!environmentMaterial) return;
+
+          // Send the matched material to the environment slot
+          this.sendEnvironmentMaterial(environmentSlot.id, environmentMaterial.id);
         }
 
         sendEnvironmentMaterial(slotId, materialId) {
