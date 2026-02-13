@@ -491,6 +491,9 @@
         margin-bottom: 28px;
         padding-bottom: 28px;
         border-bottom: 1px solid #e5e5e5;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
       }
 
       .exit-3d-button {
@@ -524,6 +527,42 @@
 
       .exit-3d-button:hover::before {
         transform: translateX(-3px);
+      }
+
+      /* ============================================
+         Showcase Controls
+         ============================================ */
+
+      .showcase-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 16px;
+        background-color: #1e372f;
+        color: #fff;
+        border: none;
+        border-radius: 0;
+        font-family: inherit;
+        font-size: 12px;
+        font-weight: 400;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+      }
+
+      .showcase-button:hover {
+        background-color: #4b5f59;
+      }
+
+      .showcase-button.active::before {
+        content: '⏹';
+        font-size: 14px;
+      }
+
+      .showcase-button:not(.active)::before {
+        content: '▶';
+        font-size: 12px;
       }
 
       /* ============================================
@@ -715,6 +754,16 @@
         .exit-3d-section {
           margin-bottom: 20px;
           padding-bottom: 20px;
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 12px;
+        }
+
+        .showcase-button {
+          width: 100%;
+          justify-content: center;
+          padding: 10px 16px;
+          font-size: 11px;
         }
 
         .options-section {
@@ -791,13 +840,13 @@
           ],
 
           // Products available in pre-render mode (first = default)
-          // Labels must match the product titles in the Metabox configurator
+          // Labels must match the product asset names (title field) in the Metabox configurator
           products: [
-            { key: 'jagger-dining-side-chair', label: 'Jagger Dining Side Chair', displayName: 'Jagger Dining Side Chair', dimensions: '20" Width x 21" Depth x 29.5" Height' },
-            { key: 'jagger-dining-arm-chair', label: 'Jagger Dining Arm Chair', displayName: 'Jagger Dining Arm Chair', dimensions: '22" Width x 21.5" Depth x 29.5" Height' },
-            { key: 'arhaus-jagger-chair', label: 'Arhaus Jagger Chair', displayName: 'Jagger Chair', dimensions: '27.5" Width x 27" Depth x 30" Height' },
-            { key: 'arhaus-jagger-dining-bench', label: 'Arhaus Jagger Dining Bench', displayName: 'Jagger Dining Bench', dimensions: '61" Width x 22.5" Depth x 29.5" Height' },
-            { key: 'jagger-barstool', label: 'Jagger Barstool', displayName: 'Jagger Barstool', dimensions: '22.25" Width x 21.5" Depth x 41.75" Height' },
+            { key: 'jagger-dining-side-chair', label: '13_02_Jagger_Dining_Side_Chair', displayName: 'Jagger Dining Side Chair', dimensions: '20" Width x 21" Depth x 29.5" Height' },
+            { key: 'jagger-dining-arm-chair', label: '13_02_Jagger_Dining_Armchair', displayName: 'Jagger Dining Arm Chair', dimensions: '22" Width x 21.5" Depth x 29.5" Height' },
+            { key: 'arhaus-jagger-chair', label: '13_02_Jagger_Chair', displayName: 'Jagger Chair', dimensions: '27.5" Width x 27" Depth x 30" Height' },
+            { key: 'arhaus-jagger-dining-bench', label: '13_02_Jagger_Dining_Bench', displayName: 'Jagger Dining Bench', dimensions: '61" Width x 22.5" Depth x 29.5" Height' },
+            { key: 'jagger-barstool', label: '13_02_Jagger_Barstool', displayName: 'Jagger Barstool', dimensions: '22.25" Width x 21.5" Depth x 41.75" Height' },
           ],
 
           // Curated material slots (order = filename segment order)
@@ -846,6 +895,10 @@
         ShowEmbeddedMenu,
         ShowOverlayInterface,
         SetCamera,
+        InitShowcase,
+        PlayShowcase,
+        PauseShowcase,
+        StopShowcase,
         saveImage,
       } from 'https://cdn.jsdelivr.net/npm/@3dsource/metabox-front-api@latest/+esm';
       import { createApp } from 'vue';
@@ -867,6 +920,7 @@
         api = {};
         viewportReady = false;
         onViewportReady = null; // callback for pending camera
+        vueInstance = null; // Reference to Vue instance for reactive updates
 
         ready(api) {
           this.api = api;
@@ -893,6 +947,11 @@
             if (ready && this.onViewportReady) {
               this.onViewportReady();
               this.onViewportReady = null;
+            }
+          });
+          this.api.addEventListener('showcaseStatusChanged', (status) => {
+            if (this.vueInstance) {
+              this.vueInstance.showcaseStatus = status;
             }
           });
         }
@@ -976,10 +1035,9 @@
           // Map product slot labels to environment slot labels (normalized)
           const normalize = (s) => s.toLowerCase().trim();
           const slotMapping = {
-            'seat and backrest': 'Chairs Fabric',
-            'seat & backrest': 'Chairs Fabric',
-            'frame': 'Chairs Wood',
-            'metal finish': 'Chairs Metal',
+            'fabric': 'Chairs Fabric',
+            'metal': 'Chairs Metal',
+            'wood': 'Chairs Wood',
           };
 
           const normalizedSlotLabel = normalize(productSlot.label);
@@ -1025,6 +1083,35 @@
         getCtaInformation() {
           this.api.sendCommandToMetabox(new GetCallToActionInformation());
         }
+
+        initShowcase() {
+          this.api.sendCommandToMetabox(new InitShowcase());
+        }
+
+        playShowcase() {
+          this.api.sendCommandToMetabox(new PlayShowcase());
+        }
+
+        pauseShowcase() {
+          this.api.sendCommandToMetabox(new PauseShowcase());
+        }
+
+        stopShowcase() {
+          this.api.sendCommandToMetabox(new StopShowcase());
+        }
+
+        toggleShowcase() {
+          const status = this.vueInstance?.showcaseStatus || 'stop';
+          if (status === 'play' || status === 'pause' || status === 'init') {
+            // Stop showcase and return to manual controls
+            this.stopShowcase();
+          } else {
+            // If stopped, init and play
+            this.initShowcase();
+            // Play will be called automatically after init completes
+            setTimeout(() => this.playShowcase(), 500);
+          }
+        }
       }
 
       /**
@@ -1047,6 +1134,9 @@
 
             // Camera angles from render metadata { angleKey: cameraPayload }
             cameraAngles: {},
+
+            // Showcase status (reactive) - 'stop', 'init', 'play', 'pause'
+            showcaseStatus: 'stop',
           };
         },
 
@@ -1167,6 +1257,21 @@
             }
           },
 
+          /** Get thumbnail URL for a product in real-time mode */
+          getProductThumbnail(product) {
+            if (!product || !product.title) {
+              return this.config.prerender.fallbackImage;
+            }
+
+            const normalize = (s) => s.toLowerCase().trim();
+            const matched = this.config.prerender.products.find(
+              (p) => normalize(p.label) === normalize(product.title)
+            );
+
+            const productKey = matched?.key;
+            return this.resolveImageUrl('front', productKey);
+          },
+
           /** Select a pre-render product */
           selectProduct(productKey) {
             this.selectedProduct = productKey;
@@ -1181,6 +1286,11 @@
           selectAngle(angleKey) {
             this.activeAngle = angleKey;
             if (this.mode === 'realtime' && !this.transitioning) {
+              // If showcase is active, stop it first to enable manual camera control
+              if (this.showcaseStatus === 'play' || this.showcaseStatus === 'pause' || this.showcaseStatus === 'init') {
+                this.shim.stopShowcase();
+              }
+              // Apply the selected camera angle
               this.applyCameraForAngle(angleKey);
             }
           },
@@ -1217,6 +1327,7 @@
                 this.config.configuratorId,
                 'embed3DSource',
                 (api) => {
+                  this.shim.vueInstance = this;
                   this.shim.ready(api);
                   // Sync happens automatically when shim.state populates (see watcher)
                 },
@@ -1471,7 +1582,7 @@
            RIGHT PANEL — Real-time 3D mode (loaded)
            ========================================== -->
       <div class="right-panel" v-if="mode === 'realtime' && !transitioning">
-        <!-- Exit 3D -->
+        <!-- Exit 3D & Showcase Controls -->
         <div class="exit-3d-section">
           <button
             type="button"
@@ -1479,6 +1590,14 @@
             @click="leaveRealTimeMode"
           >
             Back to Gallery
+          </button>
+          <button
+            type="button"
+            class="showcase-button"
+            :class="{ active: showcaseStatus === 'play' || showcaseStatus === 'pause' || showcaseStatus === 'init' }"
+            @click="shim.toggleShowcase()"
+          >
+            {{ (showcaseStatus === 'play' || showcaseStatus === 'pause' || showcaseStatus === 'init') ? 'Stop Showcase' : 'Play Showcase' }}
           </button>
         </div>
 
@@ -1494,7 +1613,7 @@
             <img
               v-for="product in shim.products"
               :key="product.id"
-              :src="resolveImageUrl('front', config.prerender.products.find(p => p.label.toLowerCase().trim() === product.title.toLowerCase().trim())?.key)"
+              :src="getProductThumbnail(product)"
               :alt="product.title"
               :title="product.title"
               class="product-card"
