@@ -313,12 +313,23 @@
       }
 
       .option-label {
-        font-size: 12px;
-        font-weight: 400;
+        font-size: 14px;
+        font-weight: 500;
         letter-spacing: 0.08em;
         text-transform: uppercase;
         margin-bottom: 12px;
         color: #666;
+      }
+
+      .option-sublabel {
+        font-size: 11px;
+        font-weight: 400;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        margin-bottom: 10px;
+        margin-top: 20px;
+        color: #999;
+        padding-left: 4px;
       }
 
       .options {
@@ -854,7 +865,7 @@
           slots: [
             {
               key: 'upholstery',
-              label: 'Seat & Backrest',
+              label: 'Upholstery',
               materials: [
                 { key: 'arh-leather-carbon', label: 'Arh Leather Carbon', swatch: './images/swatches/arh-leather-carbon.webp' },
                 { key: 'arh-leather-buckeye', label: 'Arh Leather Buckeye', swatch: './images/swatches/arh-leather-buckeye.webp' },
@@ -1272,6 +1283,39 @@
             return this.resolveImageUrl('front', productKey);
           },
 
+          /** Get swatch URL for a material in real-time mode */
+          getMaterialSwatch(material) {
+            if (!material || !material.title) {
+              return './images/swatches/placeholder.webp';
+            }
+            // Convert "Arh Leather Carbon" → "arh-leather-carbon"
+            const filename = material.title.toLowerCase().replace(/\s+/g, '-');
+            return `./images/swatches/${filename}.webp`;
+          },
+
+          /** Check if a slot is the upholstery slot (fabric/leather) */
+          isUpholsterySlot(slot) {
+            return slot.label && (slot.label.toLowerCase().includes('fabric') || slot.label.toLowerCase().includes('upholstery'));
+          },
+
+          /** Get fabric materials (non-leather) from a slot */
+          getFabricMaterials(slot) {
+            const materials = slot.enabledMaterials || slot.materials || [];
+            return materials.filter(m => {
+              const name = (m.title || m.label || '').toLowerCase();
+              return !name.includes('leather');
+            });
+          },
+
+          /** Get leather materials from a slot */
+          getLeatherMaterials(slot) {
+            const materials = slot.enabledMaterials || slot.materials || [];
+            return materials.filter(m => {
+              const name = (m.title || m.label || '').toLowerCase();
+              return name.includes('leather');
+            });
+          },
+
           /** Select a pre-render product */
           selectProduct(productKey) {
             this.selectedProduct = productKey;
@@ -1517,10 +1561,69 @@
             v-for="slot in visibleSlots"
             :key="slot.key"
           >
-            <p class="option-label">{{ slot.label }}</p>
+            <!-- Upholstery slot with Fabric/Leather subdivisions -->
+            <template v-if="isUpholsterySlot(slot) && slot.materials[0]?.swatch">
+              <p class="option-label">{{ slot.label }}</p>
 
-            <!-- Swatch thumbnails (when materials have swatch images) -->
-            <template v-if="slot.materials[0]?.swatch">
+              <!-- Fabric subsection -->
+              <p class="option-sublabel">Fabric</p>
+              <div class="swatch-options">
+                <button
+                  type="button"
+                  v-for="material in getFabricMaterials(slot)"
+                  :key="material.key"
+                  class="swatch-option"
+                  :class="{ active: selections[slot.key] === material.key }"
+                  :title="material.label"
+                  @click="selectMaterial(slot.key, material.key)"
+                >
+                  <img :src="material.swatch" :alt="material.label" />
+                </button>
+                <!-- View more in 3D card -->
+                <button
+                  type="button"
+                  class="swatch-option view-more"
+                  title="View more options in real-time 3D"
+                  @click="enterRealTimeMode"
+                >
+                  More<br>in 3D
+                </button>
+              </div>
+
+              <!-- Leather subsection -->
+              <p class="option-sublabel">Leather</p>
+              <div class="swatch-options">
+                <button
+                  type="button"
+                  v-for="material in getLeatherMaterials(slot)"
+                  :key="material.key"
+                  class="swatch-option"
+                  :class="{ active: selections[slot.key] === material.key }"
+                  :title="material.label"
+                  @click="selectMaterial(slot.key, material.key)"
+                >
+                  <img :src="material.swatch" :alt="material.label" />
+                </button>
+                <!-- View more in 3D card -->
+                <button
+                  type="button"
+                  class="swatch-option view-more"
+                  title="View more options in real-time 3D"
+                  @click="enterRealTimeMode"
+                >
+                  More<br>in 3D
+                </button>
+              </div>
+
+              <!-- Selected material name -->
+              <p class="swatch-name">
+                {{ slot.materials.find(m => m.key === selections[slot.key])?.label }}
+              </p>
+            </template>
+
+            <!-- Non-upholstery slots (Metal, Wood, etc.) with swatches -->
+            <template v-else-if="slot.materials[0]?.swatch">
+              <p class="option-label">{{ slot.label }}</p>
               <div class="swatch-options">
                 <button
                   type="button"
@@ -1549,17 +1652,20 @@
             </template>
 
             <!-- Text buttons (fallback for slots without swatches) -->
-            <div class="options" v-else>
-              <button
-                type="button"
-                v-for="material in slot.materials"
-                :key="material.key"
-                :class="{ active: selections[slot.key] === material.key }"
-                @click="selectMaterial(slot.key, material.key)"
-              >
-                {{ material.label }}
-              </button>
-            </div>
+            <template v-else>
+              <p class="option-label">{{ slot.label }}</p>
+              <div class="options">
+                <button
+                  type="button"
+                  v-for="material in slot.materials"
+                  :key="material.key"
+                  :class="{ active: selections[slot.key] === material.key }"
+                  @click="selectMaterial(slot.key, material.key)"
+                >
+                  {{ material.label }}
+                </button>
+              </div>
+            </template>
           </div>
         </div>
 
@@ -1631,27 +1737,80 @@
             v-for="slot in shim.productSlots"
             :key="slot.id"
           >
-            <p class="option-label">{{ slot.label }}</p>
-            <div class="swatch-options">
-              <button
-                type="button"
-                :key="material.id"
-                class="swatch-option"
-                :class="{ active: shim.productMaterialsIds?.[shim.state.productId]?.[slot.id] === material.id }"
-                :title="material.title"
-                @click="shim.sendProductMaterial(slot.id, material.id)"
-                v-for="material in slot.enabledMaterials"
-              >
-                <img
-                  :src="'./images/swatches/placeholder-' + material.id + '.webp'"
-                  :alt="material.title"
-                  @error="onImageError"
-                />
-              </button>
-            </div>
-            <p class="swatch-name">
-              {{ shim.productSlots.find(s => s.id === slot.id)?.enabledMaterials.find(m => shim.productMaterialsIds?.[shim.state.productId]?.[slot.id] === m.id)?.title }}
-            </p>
+            <!-- Upholstery slot with Fabric/Leather subdivisions -->
+            <template v-if="isUpholsterySlot(slot)">
+              <p class="option-label">Upholstery</p>
+
+              <!-- Fabric subsection -->
+              <p class="option-sublabel">Fabric</p>
+              <div class="swatch-options">
+                <button
+                  type="button"
+                  :key="material.id"
+                  class="swatch-option"
+                  :class="{ active: shim.productMaterialsIds?.[shim.state.productId]?.[slot.id] === material.id }"
+                  :title="material.title"
+                  @click="shim.sendProductMaterial(slot.id, material.id)"
+                  v-for="material in getFabricMaterials(slot)"
+                >
+                  <img
+                    :src="getMaterialSwatch(material)"
+                    :alt="material.title"
+                    @error="onImageError"
+                  />
+                </button>
+              </div>
+
+              <!-- Leather subsection -->
+              <p class="option-sublabel">Leather</p>
+              <div class="swatch-options">
+                <button
+                  type="button"
+                  :key="material.id"
+                  class="swatch-option"
+                  :class="{ active: shim.productMaterialsIds?.[shim.state.productId]?.[slot.id] === material.id }"
+                  :title="material.title"
+                  @click="shim.sendProductMaterial(slot.id, material.id)"
+                  v-for="material in getLeatherMaterials(slot)"
+                >
+                  <img
+                    :src="getMaterialSwatch(material)"
+                    :alt="material.title"
+                    @error="onImageError"
+                  />
+                </button>
+              </div>
+
+              <!-- Selected material name -->
+              <p class="swatch-name">
+                {{ shim.productSlots.find(s => s.id === slot.id)?.enabledMaterials.find(m => shim.productMaterialsIds?.[shim.state.productId]?.[slot.id] === m.id)?.title }}
+              </p>
+            </template>
+
+            <!-- Non-upholstery slots (Metal, Wood, etc.) -->
+            <template v-else>
+              <p class="option-label">{{ slot.label }}</p>
+              <div class="swatch-options">
+                <button
+                  type="button"
+                  :key="material.id"
+                  class="swatch-option"
+                  :class="{ active: shim.productMaterialsIds?.[shim.state.productId]?.[slot.id] === material.id }"
+                  :title="material.title"
+                  @click="shim.sendProductMaterial(slot.id, material.id)"
+                  v-for="material in slot.enabledMaterials"
+                >
+                  <img
+                    :src="getMaterialSwatch(material)"
+                    :alt="material.title"
+                    @error="onImageError"
+                  />
+                </button>
+              </div>
+              <p class="swatch-name">
+                {{ shim.productSlots.find(s => s.id === slot.id)?.enabledMaterials.find(m => shim.productMaterialsIds?.[shim.state.productId]?.[slot.id] === m.id)?.title }}
+              </p>
+            </template>
           </div>
         </div>
 
@@ -1693,7 +1852,7 @@
                   v-for="material in slot.enabledMaterials"
                 >
                   <img
-                    :src="'./images/swatches/env-' + material.id + '.webp'"
+                    :src="getMaterialSwatch(material)"
                     :alt="material.title"
                     @error="onImageError"
                   />
