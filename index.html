@@ -853,11 +853,11 @@
           // Products available in pre-render mode (first = default)
           // Labels must match the product asset names (title field) in the Metabox configurator
           products: [
-            { key: 'jagger-dining-side-chair', label: '13_02_Jagger_Dining_Side_Chair', displayName: 'Jagger Dining Side Chair', dimensions: '20" Width x 21" Depth x 29.5" Height' },
-            { key: 'jagger-dining-arm-chair', label: '13_02_Jagger_Dining_Armchair', displayName: 'Jagger Dining Arm Chair', dimensions: '22" Width x 21.5" Depth x 29.5" Height' },
-            { key: 'arhaus-jagger-chair', label: '13_02_Jagger_Chair', displayName: 'Jagger Chair', dimensions: '27.5" Width x 27" Depth x 30" Height' },
-            { key: 'arhaus-jagger-dining-bench', label: '13_02_Jagger_Dining_Bench', displayName: 'Jagger Dining Bench', dimensions: '61" Width x 22.5" Depth x 29.5" Height' },
-            { key: 'jagger-barstool', label: '13_02_Jagger_Barstool', displayName: 'Jagger Barstool', dimensions: '22.25" Width x 21.5" Depth x 41.75" Height' },
+            { key: 'jagger-dining-side-chair', label: '16_02_Jagger_Dining_Side_Chair', displayName: 'Jagger Dining Side Chair', dimensions: '20" Width x 21" Depth x 29.5" Height' },
+            { key: 'jagger-dining-arm-chair', label: '16_02_Jagger_Dining_Armchair', displayName: 'Jagger Dining Arm Chair', dimensions: '22" Width x 21.5" Depth x 29.5" Height' },
+            { key: 'arhaus-jagger-chair', label: '16_02_Jagger_Chair', displayName: 'Jagger Chair', dimensions: '27.5" Width x 27" Depth x 30" Height' },
+            { key: 'arhaus-jagger-dining-bench', label: '16_02_Jagger_Dining_Bench', displayName: 'Jagger Dining Bench', dimensions: '61" Width x 22.5" Depth x 29.5" Height' },
+            { key: 'jagger-barstool', label: '16_02_Jagger_Barstool', displayName: 'Jagger Barstool', dimensions: '22.25" Width x 21.5" Depth x 41.75" Height' },
           ],
 
           // Curated material slots (order = filename segment order)
@@ -1193,20 +1193,21 @@
           /** Get dimensions for a product by matching title */
           getProductDimensions() {
             if (!this.shim.product) return '';
-            const normalize = (s) => s.toLowerCase().trim();
-            const matched = this.config.prerender.products.find(
-              (p) => normalize(p.label) === normalize(this.shim.product.title)
-            );
+            const matched = this.findConfigProduct(this.shim.product.title);
             return matched ? matched.dimensions : '';
+          },
+
+          /** Get display name for real-time product by matching title */
+          realtimeProductName() {
+            if (!this.shim.product) return '';
+            const matched = this.findConfigProduct(this.shim.product.title);
+            return matched ? matched.displayName : this.shim.product.title;
           },
 
           /** In realtime mode, map the 3D product title back to a config product key */
           currentProductKey() {
             if (this.mode === 'realtime' && this.shim.product) {
-              const normalize = (s) => s.toLowerCase().trim();
-              const matched = this.config.prerender.products.find(
-                (p) => normalize(p.label) === normalize(this.shim.product.title)
-              );
+              const matched = this.findConfigProduct(this.shim.product.title);
               if (matched) return matched.key;
             }
             return this.selectedProduct;
@@ -1236,6 +1237,26 @@
         },
 
         methods: {
+          /**
+           * Normalize a title/label to a comparable slug.
+           * Handles underscores, spaces, hyphens, and non-alphanumeric chars
+           * so API titles and config labels match regardless of formatting.
+           */
+          slugify(s) {
+            return s.toLowerCase().replace(/[\s_-]+/g, '-').replace(/[^a-z0-9-]/g, '').replace(/-+/g, '-').replace(/^-|-$/g, '');
+          },
+
+          /** Find a config product matching an API product title */
+          findConfigProduct(apiTitle) {
+            if (!apiTitle) return null;
+            const slug = this.slugify(apiTitle);
+            return this.config.prerender.products.find(
+              (p) => this.slugify(p.label) === slug
+                  || this.slugify(p.displayName) === slug
+                  || this.slugify(p.key) === slug,
+            );
+          },
+
           /**
            * Build the image URL for a given camera angle using current selections.
            * Convention: <product>_<slot1-material>_<slot2-material>_..._<angle>.webp
@@ -1274,13 +1295,12 @@
               return this.config.prerender.fallbackImage;
             }
 
-            const normalize = (s) => s.toLowerCase().trim();
-            const matched = this.config.prerender.products.find(
-              (p) => normalize(p.label) === normalize(product.title)
-            );
-
-            const productKey = matched?.key;
-            return this.resolveImageUrl('front', productKey);
+            const matched = this.findConfigProduct(product.title);
+            if (matched) {
+              return this.resolveImageUrl('front', matched.key);
+            }
+            // No config match — use the API product's own thumbnail if available
+            return product.thumbnail || this.config.prerender.fallbackImage;
           },
 
           /** Get swatch URL for a material in real-time mode */
@@ -1404,7 +1424,6 @@
            */
           syncSelectionsTo3D() {
             const cfg = this.config.prerender;
-            const normalize = (s) => s.toLowerCase().trim();
 
             // Phase 1: Match and sync product by label → title
             const selectedProductConfig = cfg.products.find(
@@ -1412,7 +1431,7 @@
             );
             if (selectedProductConfig && this.shim.products) {
               const matchedProduct = this.shim.products.find(
-                (p) => normalize(p.title) === normalize(selectedProductConfig.label),
+                (p) => this.slugify(p.title) === this.slugify(selectedProductConfig.label),
               );
               if (matchedProduct && matchedProduct.id !== this.shim.state.productId) {
                 // Product differs — switch it; watcher will re-call us with new product data
@@ -1431,7 +1450,7 @@
                 // Search all Metabox slots for a material with a matching title
                 for (const metaboxSlot of this.shim.productSlots) {
                   const matched = metaboxSlot.enabledMaterials.find(
-                    (m) => normalize(m.title) === normalize(materialConfig.label),
+                    (m) => this.slugify(m.title) === this.slugify(materialConfig.label),
                   );
                   if (matched) {
                     this.shim.sendProductMaterial(metaboxSlot.id, matched.id);
@@ -1708,7 +1727,7 @@
         </div>
 
         <!-- Product name (Arhaus-style) -->
-        <h2 class="product-name">{{ shim.product?.title }}</h2>
+        <h2 class="product-name">{{ realtimeProductName }}</h2>
         <p class="product-subtitle">Jagger Collection</p>
         <p class="product-dimensions">{{ getProductDimensions }}</p>
 
